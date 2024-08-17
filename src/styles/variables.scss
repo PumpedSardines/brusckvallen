@@ -1,0 +1,11 @@
+$spacing-unit: 8px;
+
+@function spacing($pixels...) {
+  $res: null;
+
+  @each $pixel in $pixels {
+    $res: append($res, $pixel * $spacing-unit);
+  }
+
+  @return $res;
+}

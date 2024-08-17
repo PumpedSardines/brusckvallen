@@ -1,9 +1,45 @@
 :root {
-
+  --font-family-heading: "Salsa", sans-serif;
+  --font-family-read: "Roboto", sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-family: var(--font-family-read);
+  background-color: #f8f8f8;
+  color: #333;
 }
 
+[data-no-initial-transition] {
+  transition: none !important;
+}
+
+.cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: spacing(0, 4);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: spacing(1);
+  max-width: 1200px;
+  width: 100%;
+}
+
+.c-1 {
+  grid-column: span 1;
+}
+
+.c-3 {
+  grid-column: span 3;
+}
+
+.c-2 {
+  grid-column: span 2;
+}

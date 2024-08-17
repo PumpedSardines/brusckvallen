@@ -8,7 +8,7 @@ const htmlMinify = require("html-minifier-terser").minify;
 
 const minify = {
   css: (css) => new CleanCSS({}).minify(css).styles,
-  js: (js) => UglifyJS.minify(js).code,
+  js: (js) => UglifyJS.minify(js, { toplevel: true }).code,
   html: (html) =>
     htmlMinify(html, {
       collapseWhitespace: true,
