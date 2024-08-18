@@ -1,10 +1,13 @@
-a {
-  color: inherit;
-}
-
 body {
+  a {
+    color: inherit;
+
+    font-weight: 500;
+  }
+
   p {
     margin: 0;
+    font-weight: 400;
 
     &.larger {
       font-size: 1.15rem;
@@ -14,6 +17,7 @@ body {
   h1 {
     font-size: 2.5rem;
     margin: 0;
+    font-weight: 700;
     font-family: var(--font-family-heading);
   }
 }

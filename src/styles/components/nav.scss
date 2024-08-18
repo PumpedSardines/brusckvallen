@@ -1,6 +1,7 @@
 // Main nav
 nav.nav {
-  background-color: #f8f8f8cc;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
   padding: spacing(2, 0);
   color: #333;
   z-index: 100;
@@ -11,13 +12,11 @@ nav.nav {
 
   transition:
     background-color 0.3s,
-    color 0.3s,
-    padding 0.3s;
+    border-color 0.3s;
 
-  &[data-expanded] {
-    //padding: spacing(4, 0);
-    background-color: #f8f8f866;
-    // color: white;
+  &[data-expanded]:not(:hover) {
+    background-color: #f8f8f877;
+    border-color: #ddd0;
   }
 
   p {
@@ -44,7 +43,7 @@ nav.nav {
 
     p {
       // text-shadow: 0px 0px 20px #333;
-      font-size: 1.15rem;
+      font-weight: 500;
     }
 
     li {

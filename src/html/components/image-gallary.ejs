@@ -1,0 +1,21 @@
+<%
+
+let className = "";
+
+if (typeof type !== 'undefined' && type === "big-right") {
+  className = "image-gallery--big-right";
+}
+
+if (typeof type !== 'undefined' && type === "big-left") {
+  className = "image-gallery--big-left";
+}
+
+%>
+
+<div class="image-gallery <%= className %>">
+  <% for(const image of images) { %>
+    <div class="image-gallery__image-cont">
+      <%- await include('../components/img.ejs', { src: image.src, alt: image.alt }); %>
+    </div>
+  <% } %>
+</div>

@@ -1,6 +1,6 @@
 :root {
-  --font-family-heading: "Salsa", sans-serif;
-  --font-family-read: "Roboto", sans-serif;
+  --font-family-heading: "Montserrat", sans-serif;
+  --font-family-read: "Open Sans", sans-serif;
 }
 
 body {
@@ -15,6 +15,27 @@ body {
   transition: none !important;
 }
 
+[data-img-faded] {
+  background-color: #eee;
+
+  img {
+    opacity: 0;
+  }
+}
+
+[data-img-faded="loaded"] {
+  img {
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+}
+
+[data-img-faded="already-loaded"] {
+  img {
+    opacity: 1;
+  }
+}
+
 .cont {
   display: flex;
   align-items: center;
@@ -24,22 +45,65 @@ body {
   width: 100%;
 }
 
+$cont-spacing: 16;
+
+.cont--spacing {
+  margin: spacing($cont-spacing, 0);
+}
+
+.cont--spacing-top {
+  margin-top: spacing($cont-spacing);
+}
+
+.cont--spacing-bottom {
+  margin-bottom: spacing($cont-spacing);
+}
+
 .inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: spacing(1);
+  gap: spacing(4);
+  row-gap: spacing(0);
   max-width: 1200px;
   width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: spacing(1, 2);
+  box-sizing: border-box;
+  border: solid 1px #ddd;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+  font-family: var(--font-family-read);
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  height: 100px;
+  min-height: 100px;
+  padding: spacing(1, 2);
+  font-family: var(--font-family-read);
+  font-size: 1rem;
+
+  border: solid 1px #ddd;
+  background-color: #f8f8f8;
 }
 
 .c-1 {
   grid-column: span 1;
 }
 
+.c-2 {
+  grid-column: span 2;
+}
+
 .c-3 {
   grid-column: span 3;
 }
 
-.c-2 {
-  grid-column: span 2;
+.c-4 {
+  grid-column: span 4;
 }
