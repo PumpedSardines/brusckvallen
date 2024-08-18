@@ -1,0 +1,113 @@
+<script>
+const navElement = document.querySelector("nav.nav");
+
+if (navElement != null) {
+  // Nav isn't used on this page
+  const updateScroll = () => {
+    if (scrollY <= 50) {
+      navElement.classList.add("at-top");
+    } else {
+      navElement.classList.remove("at-top");
+    }
+  };
+
+  window.addEventListener("scroll", updateScroll);
+  updateScroll();
+}
+</script>
+
+<nav class="nav">
+  <div class="cont">
+    <div class="inner">
+      <div class="c-2">
+        <a class="logo" href="/">
+          <p>Brusckvallen</p>
+        </a>
+      </div>
+      <div class="c-2 links">
+        <ul>
+          <li>
+            <a href="/"><p>Hem</p></a>
+          </li>
+          <li>
+            <a href="/stugan"><p>Stugan</p></a>
+          </li>
+          <li>
+            <a href="/omradet"><p>Området</p></a>
+          </li>
+          <li>
+            <a href="/bokning-och-fragor"><p>Bokning &amp; Frågor</p></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style lang="scss">
+@import "../../styles/variables.scss";
+
+.spacer {
+    height: 2rem;
+  }
+
+nav.nav {
+  background-color: var(--background-primary);
+  border-bottom: 1px solid var(--border-primary);
+  padding: spacing(2, 0);
+  z-index: 100;
+
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:global(.at-top):not(:hover) {
+    background-color: #f8f8f877;
+    border-bottom: 1px solid transparent;
+  }
+
+
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+
+  p {
+    margin: 0;
+  }
+
+  .logo {
+    text-decoration: none;
+    font-family: var(--font-family-heading);
+    font-size: 1.5rem;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+
+    p {
+      font-weight: 500;
+    }
+
+    li {
+      margin-left: spacing(4);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+</style>

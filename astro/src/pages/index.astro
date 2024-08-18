@@ -1,0 +1,33 @@
+---
+import "../styles/global.scss"
+import "../styles/typography.scss"
+import "../styles/fonts.scss"
+
+import Nav from "../components/ui/Nav.astro"
+import Footer from "../components/ui/Footer.astro"
+
+import Hero from "../components/pages/home/Hero.astro"
+import Stugan from "../components/pages/home/Stugan.astro"
+import Omradet from "../components/pages/home/Omradet.astro"
+import AskQuestion from "../components/pages/home/AskQuestion.astro"
+import AboutRusck from "../components/pages/home/AboutRusck.astro"
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Astro</title>
+	</head>
+	<body>
+    <Nav />
+		<Hero />
+    <Stugan />
+    <Omradet />
+    <AskQuestion />
+    <AboutRusck />
+    <Footer />
+	</body>
+</html>
