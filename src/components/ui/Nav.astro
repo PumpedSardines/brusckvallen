@@ -61,15 +61,14 @@ nav.nav {
   width: 100%;
   box-sizing: border-box;
 
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+
   &:global(.at-top):not(:hover) {
     background-color: #f8f8f877;
     border-bottom: 1px solid transparent;
   }
-
-
-  transition:
-    background-color 0.3s,
-    border-color 0.3s;
 
   p {
     margin: 0;
