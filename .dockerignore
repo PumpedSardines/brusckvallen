@@ -1,0 +1,9 @@
+*
+
+!public/
+!src/
+!astro.config.mjs
+!package.json
+!package-lock.json
+!tsconfig.json
+!nginx.conf

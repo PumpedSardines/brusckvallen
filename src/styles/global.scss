@@ -1,22 +1,9 @@
 @import "variables.scss";
 
-:root {
-  --primary: #517987;
-  --primary-light: #c4d3d8;
-
-  --text-primary: #333;
-
-  --background-primary: #f8f8f8;
-  --background-secondary: #eee;
-
-  --border-primary: #ddd;
-
-  --font-family-heading: "Montserrat", sans-serif;
-  --font-family-read: "Open Sans", sans-serif;
-}
-
 // Working in the middle of the night
-:rooot {
+// The webpage is very bright, and it hurts my eyes
+// So i add this when i'm working at night
+@mixin middle-of-the-night-development {
   --primary: #517987;
   --primary-light: #c4d3d8;
 
@@ -32,6 +19,27 @@
 
   --font-family-heading: "Montserrat", sans-serif;
   --font-family-read: "Open Sans", sans-serif;
+}
+
+:root {
+  --primary: #386473;
+  --primary-light: #c4d3d8;
+
+  --calendar-sunday: #f44336;
+  --calendar-sunday-light: #fc958d;
+
+  --text-primary: #333;
+  --text-disabled: #999;
+
+  --background-primary: #f8f8f8;
+  --background-secondary: #eee;
+
+  --border-primary: #ddd;
+
+  --font-family-heading: "Montserrat", sans-serif;
+  --font-family-read: "Open Sans", sans-serif;
+
+  // @include middle-of-the-night-development;
 }
 
 body {

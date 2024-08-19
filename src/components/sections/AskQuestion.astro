@@ -1,14 +1,13 @@
-<div class="cont cont--spacing home__ask-question">
+<div class="cont cont--spacing ask-question">
 <div class="inner">
 
-<div class="c-2">
-<h1 class="home__ask-question__heading">Har du en fråga?</h1>
-<p>Fyll i formuläret här bredvid om du har frågor kring bokning, tillgänglighet, priser eller något annat relaterat till stugan Brusckvallen i Bruksvallarna. Vi återkommer till dig så snart som möjligt med svar!</p>
+<div class="c-1 ask-question__block">
 </div>
 
-<div class="c-2">
-
-<form class="home__ask-question__form">
+<div class="c-2 c-4-tablet">
+  <form class="ask-question__form">
+  <h1 class="ask-question__heading">Har du en fråga?</h1>
+  <p>Fyll i formuläret här bredvid om du har frågor kring bokning, tillgänglighet, priser eller något annat relaterat till stugan Brusckvallen i Bruksvallarna. Vi återkommer till dig så snart som möjligt med svar!</p>
   <label for="name">Namn:</label>
   <input name="name" placeholder="Johan Andersson" />
   <label for="email">E-post:</label>
@@ -24,10 +23,16 @@
 </div>
 
 <style lang="scss">
-@import '../../../styles/variables.scss';
+@import '../../styles/variables.scss';
 
-.home__ask-question {
-  padding-top: spacing(8);
+.ask-question__block {
+  @include break(tablet, down) {
+    display: none;
+  }
+}
+
+.ask-question {
+  padding-top: spacing(7);
   padding-bottom: spacing(8);
 
   background-color: var(--background-secondary);
@@ -39,19 +44,21 @@
   }
 }
 
-.home__ask-question__heading {
+.ask-question__heading {
   margin-bottom: spacing(1);
 }
 
-.home__ask-question__form {
-  margin-top: spacing(1);
-
+.ask-question__form {
   @include break("phone", down) {
     margin-top: spacing(2);
   }
 
   label {
     margin-bottom: spacing(0.5);
+  }
+  
+  p {
+    margin-bottom: spacing(2);
   }
 
   input {

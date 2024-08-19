@@ -1,35 +1,32 @@
 ---
-import Image from "../../ui/Image.astro";
-import SvanteKarinImage from "../../../images/SvanteKarin.ts"
+import Image from "../ui/Image.astro";
+import SvanteKarinImage from "../../images/SvanteKarin.ts"
 
 ---
 <div class="cont cont--spacing">
   <div class="inner">
     <div class="c-2 c-4-tablet">
-      <div class="home__about-rusck__image-cont">
+      <div class="about-rusck__image-cont">
         <Image
           {...SvanteKarinImage}
         />
       </div>
     </div>
-    <div class="c-2 c-4-tablet home__about_rusck__text-cont">
-      <h1 class="home__about_rusck__header">Familjen Rusck</h1>
-      <p class="home__about_rusck__description">
+    <div class="c-2 c-4-tablet about_rusck__text-cont">
+      <h1 class="about_rusck__header">Familjen Rusck</h1>
+      <p class="about_rusck__description">
         Brusckvallen ägs och drivs av familjen Rusck. Vi har skapat en plats där
         våra gäster kan uppleva den unika skönheten i Brusckvallarna. Hos oss
         får du inte bara en mysig stuga, utan också en personlig och minnesvärd
         upplevelse. Välkommen till Brusckvallen, vårt smultronställe som vi
         gärna delar med dig.
       </p>
-      <p class="larger">
-        <a href="#">Boka din resa</a>
-      </p>
     </div>
   </div>
 </div>
 
 <style lang="scss">
-@import "../../../styles/variables";
+@import "../../styles/variables";
 
 .inner {
   @include break(tablet, down) {
@@ -39,7 +36,7 @@ import SvanteKarinImage from "../../../images/SvanteKarin.ts"
   }
 }
 
-.home__about-rusck__image-cont {
+.about-rusck__image-cont {
   position: relative;
   width: 100%;
   height: 400px;
@@ -49,18 +46,18 @@ import SvanteKarinImage from "../../../images/SvanteKarin.ts"
   }
 }
 
-.home__about_rusck__text-cont {
+.about_rusck__text-cont {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
 
-.home__about_rusck__header {
+.about_rusck__header {
   margin-bottom: spacing(1);
 }
 
-.home__about_rusck__description {
+.about_rusck__description {
   margin-bottom: spacing(1.5);
 }
 </style>

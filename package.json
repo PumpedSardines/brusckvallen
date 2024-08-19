@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.2",
+    "@astrojs/svelte": "^5.7.0",
     "astro": "^4.14.2",
+    "dayjs": "^1.11.12",
     "sass": "^1.77.8",
+    "svelte": "^4.2.18",
     "typescript": "^5.5.4"
   }
 }

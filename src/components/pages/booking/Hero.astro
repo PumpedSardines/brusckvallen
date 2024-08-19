@@ -1,0 +1,19 @@
+---
+import Image from "../../ui/Image.astro";
+import Koket from "../../../images/Koket.ts";
+---
+
+<div class="booking__hero__image">
+  <Image {...Koket} />
+</div>
+
+<style lang="scss">
+@import "../../../styles/variables.scss";
+
+.booking__hero__image {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+</style>
