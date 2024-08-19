@@ -34,7 +34,7 @@ function getWeeksInMonth(date) {
     const weekDate = date.add(i, "weeks");
 
     const number = weekDate.week();
-    const startDate = weekDate.startOf('week').format("dd D MMM");
+    const startDate = weekDate.startOf('week').subtract(1, "day").format("dd D MMM");
     const endDate = weekDate.endOf('week').format("dd D MMM");
     weeks.push({
       number,
