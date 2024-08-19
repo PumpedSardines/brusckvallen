@@ -1,4 +1,4 @@
-const SvanteKarin = {
+const StuganInifranUtsikt = {
   src: "/images/svante-karin/1600.webp",
   alt: "Svante och Karin som står bredvid varandra och ler mot kameran",
   srcset: [
@@ -10,4 +10,4 @@ const SvanteKarin = {
   ],
 };
 
-export default SvanteKarin;
+export default StuganInifranUtsikt;

@@ -3,6 +3,10 @@
 import Image from "../../ui/Image.astro"
 
 import StuganInifranUtsikt from "../../../images/StuganInifranUtsikt.ts"
+import Sovrum from "../../../images/Sovrum.ts"
+import Koket from "../../../images/Koket.ts"
+import SkidSpar from "../../../images/SkidSpar.ts"
+import Badrum from "../../../images/Badrum.ts"
 
 ---
 <div class="home__hero">
@@ -14,26 +18,22 @@ import StuganInifranUtsikt from "../../../images/StuganInifranUtsikt.ts"
     </div>
     <div class="home__hero__image">
       <Image
-        src="https://brusckvallen.se/wp-content/uploads/2024/05/20240514_022409940_iOS-2048x1365.jpg"
-        alt="Alt 1"
+        {...Sovrum}
       />
     </div>
     <div class="home__hero__image">
       <Image
-        src="https://brusckvallen.se/wp-content/uploads/2024/05/20240514_011951750_iOS-2048x1365.jpg"
-        alt="Alt 1"
+        {...Koket}
       />
     </div>
     <div class="home__hero__image home__hero__image--long">
       <Image
-        src="https://brusckvallen.se/wp-content/uploads/2023/12/22-2048x1536.jpg"
-        alt="Alt 1"
+        {...SkidSpar}
       />
     </div>
     <div class="home__hero__image">
       <Image
-        src="https://brusckvallen.se/wp-content/uploads/2024/05/20240514_021011080_iOS-2-1365x2048.jpg"
-        alt="Alt 1"
+        {...Badrum}
       />
     </div>
   </div>
