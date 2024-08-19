@@ -1,6 +1,15 @@
 ---
 
-const { src, alt } = Astro.props;
+const { src: srcRaw, alt, srcset: srcsetValues } = Astro.props;
+
+const srcset = srcsetValues
+  ?.map((data) => {
+    return `${data.src} ${data.width}w`;
+  })
+  .join(',');
+
+const src = srcsetValues?.at(-1)?.src ?? srcRaw;
+
 
 ---
 <script>
@@ -22,7 +31,12 @@ for (const element of elements) {
 </script>
 
 <div class="image">
-  <img src={src} alt={alt} />
+  <img
+    src={src}
+    srcset={srcset}
+    alt={alt}
+    loading="lazy"
+  />
 </div>
 
 <style lang="scss" >

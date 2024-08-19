@@ -5,8 +5,12 @@
 <div class="footer__line"></div>
 
 <div class="footer__texts">
-<p>Brusckvallen 2023-2024 &copy;</p>
-<p>Hemsidan gjord med kaffe och kärlek av <a href="#">Fritiof Rusck</a></p>
+  <p>Brusckvallen <span class="footer__copy-text">2023-2024 &copy;</span></p>
+  <p class="footer__sell-in-long">Hemsidan är gjord med kaffe och kärlek av <a href="#">Fritiof Rusck</a></p>
+  <p class="footer__sell-in-short">Skapad av <a href="#">Fritiof Rusck</a></p>
+</div>
+<div class="footer__copy-block">
+  <p>2023-2024 &copy;</p>
 </div>
 
 </div>
@@ -27,9 +31,44 @@
   margin-bottom: spacing(4);
 }
 
+@include break(tablet, down) {
+  .footer {
+    padding-bottom: spacing(4);
+  }
+
+  .footer__line {
+    margin-bottom: spacing(2);
+  }
+}
+
 .footer__texts {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
+
+.footer__sell-in-short {
+  display: none;
+}
+
+@include break(tablet, down) {
+  .footer__sell-in-long {
+    display: none;
+  }
+
+  .footer__sell-in-short {
+    display: block;
+  }
+}
+
+.footer__copy-block {
+  display: none;
+}
+
+@include break(phone, down) {
+  .footer__copy-text {
+    display: block;
+  }
+}
+
 </style>

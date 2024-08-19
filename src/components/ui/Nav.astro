@@ -1,4 +1,5 @@
 <script>
+
 const navElement = document.querySelector("nav.nav");
 
 if (navElement != null) {
@@ -19,12 +20,12 @@ if (navElement != null) {
 <nav class="nav">
   <div class="cont">
     <div class="inner">
-      <div class="c-2">
+      <div class="c-1">
         <a class="logo" href="/">
           <p>Brusckvallen</p>
         </a>
       </div>
-      <div class="c-2 links">
+      <div class="c-3 links">
         <ul>
           <li>
             <a href="/"><p>Hem</p></a>
@@ -44,12 +45,21 @@ if (navElement != null) {
   </div>
 </nav>
 
+<div class="spacer"></div>
+
 <style lang="scss">
 @import "../../styles/variables.scss";
 
 .spacer {
-    height: 2rem;
+  height: 62px;
+}
+
+:global(.no-fade-nav) {
+  nav.nav {
+    background-color: var(--background-primary) !important;
+    border-bottom: 1px solid var(--border-primary) !important;
   }
+}
 
 nav.nav {
   background-color: var(--background-primary);
@@ -84,12 +94,17 @@ nav.nav {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    @include break(phone, down) {
+      display: none;
+    }
   }
 
   ul {
     list-style: none;
     display: flex;
     margin: 0;
+    padding-left: 0;
 
     p {
       font-weight: 500;
@@ -97,6 +112,10 @@ nav.nav {
 
     li {
       margin-left: spacing(4);
+
+      &:first-child {
+        margin-left: 0;
+      }
     }
 
     a {

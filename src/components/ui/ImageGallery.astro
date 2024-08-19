@@ -34,6 +34,10 @@ if (typeof type !== 'undefined' && type === "big-left") {
   grid-template-rows: repeat(1, 1fr);
   gap: spacing(1);
   width: 100%;
+
+  @include break("tablet", "down") {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .image-gallery--big-right {
@@ -43,6 +47,17 @@ if (typeof type !== 'undefined' && type === "big-left") {
   grid-template-areas:
     "main main . ."
     "main main . .";
+
+  @include break("tablet", "down") {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+    grid-template-areas:
+      ". ."
+      ". ."
+      "main main"
+      "main main";
+  }
 
   .image-gallery__image-cont:nth-child(1) {
     grid-area: main;
@@ -56,6 +71,17 @@ if (typeof type !== 'undefined' && type === "big-left") {
   grid-template-areas:
     ". . main main"
     ". . main main";
+
+  @include break("tablet", "down") {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+    grid-template-areas:
+      ". ."
+      ". ."
+      "main main"
+      "main main";
+  }
 
   .image-gallery__image-cont:nth-child(1) {
     grid-area: main;

@@ -1,5 +1,7 @@
+@import "variables.scss";
+
 a {
-  color: inherit;
+  color: var(--primary);
 
   font-weight: 500;
 }
@@ -18,4 +20,8 @@ h1 {
   margin: 0;
   font-weight: 700;
   font-family: var(--font-family-heading);
+
+  @include break("phone", down) {
+    font-size: 2rem;
+  }
 }

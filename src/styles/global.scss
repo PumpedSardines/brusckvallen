@@ -1,6 +1,12 @@
 @import "variables.scss";
 
 :root {
+  --primary: #517987;
+  --primary-light: #c4d3d8;
+
+  --primary: #333;
+  --primary-light: #eee;
+
   --text-primary: #333;
 
   --background-primary: #f8f8f8;
@@ -12,11 +18,30 @@
   --font-family-read: "Open Sans", sans-serif;
 }
 
+// Working in the middle of the night
+:rooot {
+  --primary: #517987;
+  --primary-light: #c4d3d8;
+
+  --primary: #333;
+  --primary-light: #777;
+
+  --text-primary: #333;
+
+  --background-primary: #888;
+  --background-secondary: #777;
+
+  --border-primary: #777;
+
+  --font-family-heading: "Montserrat", sans-serif;
+  --font-family-read: "Open Sans", sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: var(--font-family-read);
-  background-color: #f8f8f8;
+  background-color: var(--background-primary);
   color: var(--text-primary);
 }
 
@@ -31,9 +56,18 @@ body {
   padding: spacing(0, 4);
   box-sizing: border-box;
   width: 100%;
+
+  @include break("tablet", down) {
+    padding: spacing(0, 2);
+  }
+
+  @include break("phone", down) {
+    padding: spacing(0, 1);
+  }
 }
 
 $cont-spacing: 16;
+$cont-spacing-phone: 8;
 
 .cont--spacing {
   margin: spacing($cont-spacing, 0);
@@ -47,22 +81,45 @@ $cont-spacing: 16;
   margin-bottom: spacing($cont-spacing);
 }
 
+@include break("phone", down) {
+  .cont--spacing {
+    margin: spacing($cont-spacing-phone, 0);
+  }
+
+  .cont--spacing-top {
+    margin-top: spacing($cont-spacing-phone);
+  }
+
+  .cont--spacing-bottom {
+    margin-bottom: spacing($cont-spacing-phone);
+  }
+}
+
 .inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: spacing(4);
+  column-gap: spacing(4);
+
   row-gap: spacing(0);
   max-width: 1200px;
   width: 100%;
+
+  @include break("tablet", down) {
+    column-gap: spacing(2);
+  }
+
+  @include break("phone", down) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 input {
   width: 100%;
   padding: spacing(1, 2);
   box-sizing: border-box;
-  border: solid 1px #ddd;
   font-size: 1rem;
-  background-color: #f8f8f8;
+  background-color: var(--background-primary);
+  border: solid 1px var(--border-primary);
   font-family: var(--font-family-read);
 }
 
@@ -73,11 +130,12 @@ textarea {
   height: 100px;
   min-height: 100px;
   padding: spacing(1, 2);
+
   font-family: var(--font-family-read);
   font-size: 1rem;
 
-  border: solid 1px #ddd;
-  background-color: #f8f8f8;
+  background-color: var(--background-primary);
+  border: solid 1px var(--border-primary);
 }
 
 .c-1 {
@@ -90,8 +148,36 @@ textarea {
 
 .c-3 {
   grid-column: span 3;
+
+  @include break("phone", down) {
+    grid-column: span 2;
+  }
 }
 
 .c-4 {
   grid-column: span 4;
+
+  @include break("phone", down) {
+    grid-column: span 2;
+  }
+}
+
+.c-3-tablet {
+  @include break("tablet", down) {
+    grid-column: span 3;
+  }
+
+  @include break("phone", down) {
+    grid-column: span 2;
+  }
+}
+
+.c-4-tablet {
+  @include break("tablet", down) {
+    grid-column: span 4;
+  }
+
+  @include break("phone", down) {
+    grid-column: span 2;
+  }
 }

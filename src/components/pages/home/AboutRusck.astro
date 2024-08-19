@@ -1,17 +1,18 @@
 ---
 import Image from "../../ui/Image.astro";
+import SvanteKarinImage from "../../../images/SvanteKarin.ts"
+
 ---
 <div class="cont cont--spacing">
   <div class="inner">
-    <div class="c-2">
+    <div class="c-2 c-4-tablet">
       <div class="home__about-rusck__image-cont">
         <Image
-          src="/svante-karin.png" 
-          alt="Svante och Karin Rusck"
+          {...SvanteKarinImage}
         />
       </div>
     </div>
-    <div class="c-2 home__about_rusck__text-cont">
+    <div class="c-2 c-4-tablet home__about_rusck__text-cont">
       <h1 class="home__about_rusck__header">Familjen Rusck</h1>
       <p class="home__about_rusck__description">
         Brusckvallen ägs och drivs av familjen Rusck. Vi har skapat en plats där
@@ -30,10 +31,22 @@ import Image from "../../ui/Image.astro";
 <style lang="scss">
 @import "../../../styles/variables";
 
+.inner {
+  @include break(tablet, down) {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(2);
+  }
+}
+
 .home__about-rusck__image-cont {
   position: relative;
   width: 100%;
   height: 400px;
+
+  @include break(phone, down) {
+    height: 250px;
+  }
 }
 
 .home__about_rusck__text-cont {

@@ -1,0 +1,51 @@
+---
+import "../styles/global.scss"
+import "../styles/typography.scss"
+import "../styles/fonts.scss"
+
+import Nav from "../components/ui/Nav.astro"
+import Footer from "../components/ui/Footer.astro"
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Brusckvallen</title>
+	</head>
+	<body class="no-fade-nav">
+    <Nav />
+    <div class="main">
+
+      <div class="content">
+        <h1>404</h1>
+        <p>Oj, sidan du letar efter verkar inte finnas.</p>
+      </div>
+
+      <Footer />
+    </div>
+	</body>
+</html>
+
+<style lang="scss">
+@import "../styles/variables.scss";
+
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: spacing(1);
+}
+
+</style>
