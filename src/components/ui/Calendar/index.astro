@@ -1,0 +1,252 @@
+---
+import chevronRight from "@/icons/chevron-right.svg?raw";
+import chevronLeft from "@/icons/chevron-left.svg?raw";
+---
+
+<script>
+  import "./Calendar.ts";
+</script>
+
+<div class="calendar not-loaded">
+  <div class="calendar__inner">
+    <div class="calendar__week-selector">
+      <div class="calendar__header">
+        <button class="calendar__icon-button calendar__prev-button">
+          <Fragment set:html={chevronLeft} />
+        </button>
+        <p class="larger calendar__header__title">
+          {/* Populated by the script */}
+        </p>
+        <button class="calendar__icon-button calendar__next-button">
+          <Fragment set:html={chevronRight} />
+        </button>
+      </div>
+
+      <div class="calendar__header__line"></div>
+
+      <div class="calendar__outer-days">
+        <div class="calendar__weeks"></div>
+      </div>
+    </div>
+    <div class="calendar__book-form">
+      <div class="calendar__header">
+        <button class="calendar__icon-button calendar__back-button">
+          <Fragment set:html={chevronLeft} />
+          <p>Tillbaka</p>
+        </button>
+        <p class="larger">Boka</p>
+        <div></div>
+      </div>
+      <div class="calendar__header__line"></div>
+      <form class="calendar__book-form__form">
+        <label for="name">Namn:</label>
+        <input name="name" placeholder="Johan Andersson" />
+        <label for="email">E-post:</label>
+        <input name="email" placeholder="johan.andersson@gmail.com" />
+        <label for="weeks">Veckor:</label>
+        <input name="weeks" placeholder="Jag vill boka v24 och v25" />
+        <label for="text">Meddelande & Frågor:</label>
+        <textarea name="text"></textarea>
+        <button>Skicka bokningsförfrågan</button>
+        <p class="calendar__book-form__description">
+          Att skicka en bokningsförfrågan innebär inte att du har bokat något.
+          Vi kontaktar dig så fort vi kan med mer info
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "sass:math";
+  @use "@/styles/vars";
+
+  .calendar {
+    &:global(.not-loaded) {
+      opacity: 0;
+    }
+    border: solid 1px var(--border-primary);
+    border-radius: vars.spacing(0.5);
+    background-color: var(--background-secondary);
+    overflow: hidden;
+    transition: height 0.2s;
+  }
+
+  .calendar__inner {
+    display: flex;
+    width: 200%;
+
+    transition: transform 0.2s;
+    transform: translateX(0%);
+
+    &:global(.calendar__inner--form) {
+      transform: translateX(-50%);
+    }
+
+    > div {
+      flex: 1;
+      height: max-content;
+      padding-bottom: vars.spacing(1);
+    }
+  }
+
+  .calendar__header {
+    margin-top: vars.spacing(2);
+    padding: vars.spacing(0, 3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0;
+
+    height: 1.15rem;
+    position: relative;
+
+    > p {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  :global(.calendar__header__title) {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .calendar__book-form__form {
+    padding: vars.spacing(2, 2);
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: vars.spacing(0.5);
+    }
+
+    input {
+      margin-bottom: vars.spacing(1);
+    }
+
+    textarea {
+      margin-bottom: vars.spacing(2);
+      height: 150px;
+      resize: none;
+    }
+
+    button {
+      padding: vars.spacing(1.5, 3);
+      cursor: pointer;
+      border: none;
+      background-color: #333;
+      background-color: var(--primary);
+      font-size: 1rem;
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      color: white;
+      width: 100%;
+    }
+  }
+
+  .calendar__icon-button {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: vars.spacing(1);
+
+    :global(svg) {
+      height: 1rem;
+    }
+  }
+
+  .calendar__header__line {
+    width: calc(100% - #{vars.spacing(4)});
+    height: 1px;
+    margin: vars.spacing(2);
+    margin-bottom: vars.spacing(1);
+    background-color: var(--border-primary);
+  }
+
+  .calendar__outer-days {
+    position: relative;
+  }
+
+  .calendar__weeks {
+    padding: vars.spacing(0, 0);
+  }
+
+  :global(.calendar__week-inner) {
+    padding: vars.spacing(2, 3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &:hover {
+      border-radius: vars.spacing(1);
+      background-color: var(--background-secondary-hover);
+    }
+  }
+
+  :global(.calendar__week-inner-chevron) {
+    :global(svg) {
+      height: 1rem;
+    }
+  }
+
+  :global(.calendar__week) {
+    all: unset;
+    display: block;
+    width: 100%;
+
+    padding: vars.spacing(0, 1);
+    margin-top: vars.spacing(2);
+    box-sizing: border-box;
+
+    position: relative;
+
+    .larger {
+      margin-bottom: vars.spacing(0.5);
+    }
+
+    &::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: vars.spacing(-1);
+      transform: translateX(-50%);
+      width: calc(100% - #{vars.spacing(4)});
+      height: 1px;
+      background-color: var(--border-primary);
+    }
+
+    &:first-child {
+      margin-top: vars.spacing(1);
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  .calendar__book-form__description {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: vars.spacing(2);
+    font-size: 0.85rem;
+    padding: vars.spacing(0, 2);
+  }
+
+  .calendar__footer {
+    padding: vars.spacing(2, 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
