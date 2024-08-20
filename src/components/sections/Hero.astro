@@ -1,10 +1,17 @@
 ---
 import Image from "@/components/ui/Image.astro";
 import Koket from "@/images/Koket.ts";
+import type { Image as TImage } from "@/types";
+
+interface Props {
+  image: TImage;
+}
+
+const { image } = Astro.props;
 ---
 
 <div class="booking__hero__image">
-  <Image {...Koket} />
+  <Image image={image} />
 </div>
 
 <style lang="scss">

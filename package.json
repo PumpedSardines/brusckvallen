@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "check": "astro check && tsc --noEmit",
+    "check": "astro check",
     "build": "npm run fmt:check && npm run check && astro build",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",

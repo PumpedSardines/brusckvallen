@@ -1,11 +1,15 @@
 import "@/scripts/dayjsSvLocale";
 import chevronRight from "@/icons/chevron-right.svg?raw";
 import dayjs from "dayjs";
+import { cx } from "@/scripts/cx";
+import { formatPrice } from "@/scripts/formatPrice";
+import { nextRenderFrame } from "@/scripts/nextRenderFrame";
 
 const calendars = document.querySelectorAll<HTMLDivElement>(".calendar");
 
 type Week = {
   number: number;
+  year: number;
   price: number;
   booked: boolean;
   special: boolean;
@@ -39,28 +43,40 @@ for (const calendar of calendars) {
   const goBackToWeekSelectButton = bookForm.querySelector<HTMLButtonElement>(
     ".calendar__back-button",
   )!;
+  const form = bookForm.querySelector<HTMLFormElement>("form")!;
+  const submitButton = bookForm.querySelector<HTMLFormElement>(
+    ".calendar__book-form__submit-button",
+  )!;
   const weekInput = bookForm.querySelector<HTMLInputElement>(
     'input[name="weeks"]',
   )!;
+  const formTextArea = bookForm.querySelector<HTMLInputElement>("textarea")!;
 
   let currentDate = dayjs().startOf("month");
-  let formOpen = true;
+  let formOpen = false;
+  let isSubmitting = false;
 
   function setCalendarInnerWidth() {
     const width = calendar.clientWidth;
     calendarInner.style.width = `${width * 2}px`;
-    render();
+    updateHeight();
   }
   setCalendarInnerWidth();
   window.addEventListener("resize", setCalendarInnerWidth);
 
-  function nextMonth() {
-    currentDate = currentDate.add(1, "month");
-    render();
-  }
+  const observer = new ResizeObserver(() => {
+    updateHeight();
+  });
+  observer.observe(weekSelector);
+  observer.observe(bookForm);
 
   function setFormOpen(open: boolean) {
     formOpen = open;
+    render();
+  }
+
+  function nextMonth() {
+    currentDate = currentDate.add(1, "month");
     render();
   }
 
@@ -77,20 +93,70 @@ for (const calendar of calendars) {
   nextButton.addEventListener("click", nextMonth);
   prevButton.addEventListener("click", prevMonth);
   titleContainer.addEventListener("click", backToToday);
-  goBackToWeekSelectButton.addEventListener("click", () => setFormOpen(false));
+  goBackToWeekSelectButton.addEventListener("click", () => {
+    if (isSubmitting) return;
+    setFormOpen(false);
+  });
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    formSubmit();
+  });
 
   render();
+  updateHeight();
 
-  function render() {
+  function updateHeight() {
     if (formOpen) {
-      calendarInner.classList.add("calendar__inner--form");
       calendar.style.height = `${bookForm.clientHeight}px`;
     } else {
-      calendarInner.classList.remove("calendar__inner--form");
       calendar.style.height = `${weekSelector.clientHeight}px`;
     }
+  }
 
-    calendar.classList.remove("not-loaded");
+  function setCalendarAsLoaded() {
+    if (calendar.classList.contains("not-loaded")) {
+      nextRenderFrame(() => {
+        calendar.classList.remove("not-loaded");
+      });
+    }
+  }
+
+  function updateFormOpen() {
+    const transition = () => {
+      calendar.classList.add("calendar--transitioning");
+      const onTransitionEnd = () => {
+        calendar.classList.remove("calendar--transitioning");
+        calendarInner.removeEventListener("transitionend", onTransitionEnd);
+      };
+      calendarInner.addEventListener("transitionend", onTransitionEnd);
+    };
+
+    const currentFormOpen: boolean = JSON.parse(
+      form.getAttribute("data-form-open")!,
+    );
+
+    if (currentFormOpen === formOpen) {
+      return;
+    }
+
+    if (formOpen) {
+      formTextArea.style.height = "0px";
+      calendarInner.classList.add("calendar__inner--form");
+    } else {
+      calendarInner.classList.remove("calendar__inner--form");
+    }
+
+    form.setAttribute("data-open", JSON.stringify(formOpen));
+
+    updateHeight();
+    transition();
+  }
+
+  function render() {
+    calendar.setAttribute("data-form-open", JSON.stringify(formOpen));
+    updateFormOpen();
+    setCalendarAsLoaded();
+
     weeksContainer.innerHTML = "";
     const title = currentDate.format("MMMM YYYY");
     titleContainer.textContent = title;
@@ -108,6 +174,7 @@ for (const calendar of calendars) {
         .subtract(1, "day");
       const week: Week = {
         number: weekDate.add(1, "day").week(),
+        year: weekDate.year(),
         booked: false,
         special: i == 2,
         price: 11000,
@@ -123,7 +190,7 @@ for (const calendar of calendars) {
       if (!week.booked) {
         weekElement.addEventListener("click", () => {
           setFormOpen(true);
-          weekInput.value = `Jag vill boka v${week.number}`;
+          weekInput.value = `Jag vill boka v${week.number} ${week.year}`;
         });
       }
       weekElement.classList.add("calendar__week");
@@ -131,10 +198,56 @@ for (const calendar of calendars) {
       weeksContainer.appendChild(weekElement);
     }
   }
-}
 
-function formatPrice(price: number): string {
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  async function formSubmit() {
+    const data = new FormData(form);
+    const name = data.get("name") as string;
+    const email = data.get("email") as string;
+    const weeks = data.get("weeks") as string;
+    const message = data.get("message") as string;
+
+    submitButton.innerText = "Skickar...";
+    const formElements = form.querySelectorAll<
+      HTMLInputElement | HTMLTextAreaElement
+    >("input, textarea");
+    formElements.forEach((input) => {
+      input.disabled = true;
+    });
+    isSubmitting = true;
+
+    const body = JSON.stringify({
+      name,
+      email,
+      weeks,
+      message,
+    });
+
+    console.log(body);
+
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    Math.random() < 0.0 ? onSuccess() : onFail();
+
+    function onSuccess() {
+      bookForm.innerHTML = `
+        <div class="calendar__header">
+          <p class="larger">Boka</p>
+        </div>
+        <div class="calendar__header__line"></div>
+        <div class="calendar__book-form__submit-success-cont">
+          <p class="large">Tack, vi har tagit emot din bokningförfrågan</p>
+          <p class="large">Vi återkommer inom kort</p>
+        </div>
+      `;
+    }
+
+    function onFail() {
+      formElements.forEach((input) => {
+        input.disabled = false;
+      });
+      submitButton.innerText = "Skicka bokningsförfrågan";
+      isSubmitting = false;
+    }
+  }
 }
 
 function weekTemplate(week: Week) {
@@ -144,7 +257,7 @@ function weekTemplate(week: Week) {
       week.special && "calendar__week-inner--special",
     )}">
       <div class="calendar__week-inner-text">
-        <p class="larger">v${week.number} - ${formatPrice(week.price)} kr</p>
+        <p class="larger">v${week.number} - ${formatPrice(week.price)}</p>
         <p>${week.startDate} - ${week.endDate}</p>
       </div>
       <div class="calendar__week-inner-chevron">
@@ -152,8 +265,4 @@ function weekTemplate(week: Week) {
       </div>
     </div>
   `;
-}
-
-function cx(...classes: (string | false | null | undefined)[]): string {
-  return classes.filter(Boolean).join(" ");
 }

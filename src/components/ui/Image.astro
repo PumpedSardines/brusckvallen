@@ -1,11 +1,11 @@
 ---
+import type { Image } from "@/types";
+
 interface Props {
-  src: string;
-  alt: string;
-  srcset?: { src: string; width: number }[];
+  image: Image;
 }
 
-const { src: srcRaw, alt, srcset: srcsetValues } = Astro.props;
+const { src: srcRaw, alt, srcset: srcsetValues } = Astro.props.image;
 
 const srcset = srcsetValues
   ?.map((data) => {

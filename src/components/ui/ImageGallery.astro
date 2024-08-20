@@ -1,15 +1,12 @@
 ---
+import Image from "./Image.astro";
+import type { Image as TImage } from "@/types";
+
 interface Props {
   type?: "big-right" | "big-left";
-  images: {
-    src: string;
-    alt: string;
-    srcset?: { src: string; width: number }[];
-  }[];
+  images: TImage[];
 }
 const { type, images } = Astro.props;
-
-import Image from "./Image.astro";
 
 let className: undefined | string = undefined;
 
@@ -26,7 +23,7 @@ if (typeof type !== "undefined" && type === "big-left") {
   {
     images.map((image) => (
       <div class="image-gallery__image-cont">
-        <Image src={image.src} alt={image.alt} />
+        <Image image={image} />
       </div>
     ))
   }

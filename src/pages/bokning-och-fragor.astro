@@ -11,6 +11,8 @@ import Form from "@/components/pages/booking/Form.astro";
 import Hero from "@/components/sections/Hero.astro";
 import AskQuestion from "@/components/sections/AskQuestion.astro";
 import AboutRusck from "@/components/sections/AboutRusck.astro";
+
+import Koket from "@/images/Koket";
 ---
 
 <html lang="en">
@@ -22,7 +24,7 @@ import AboutRusck from "@/components/sections/AboutRusck.astro";
   </head>
   <body class="no-fade-nav">
     <Nav />
-    <Hero />
+    <Hero image={Koket} />
     <Form />
     <AskQuestion />
     <AboutRusck />

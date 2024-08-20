@@ -40,14 +40,21 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
       <div class="calendar__header__line"></div>
       <form class="calendar__book-form__form">
         <label for="name">Namn:</label>
-        <input name="name" placeholder="Johan Andersson" />
+        <input required name="name" placeholder="Johan Andersson" />
         <label for="email">E-post:</label>
-        <input name="email" placeholder="johan.andersson@gmail.com" />
+        <input
+          required
+          type="email"
+          name="email"
+          placeholder="johan.andersson@gmail.com"
+        />
         <label for="weeks">Veckor:</label>
-        <input name="weeks" placeholder="Jag vill boka v24 och v25" />
+        <input required name="weeks" placeholder="Jag vill boka v24 och v25" />
         <label for="text">Meddelande & Frågor:</label>
         <textarea name="text"></textarea>
-        <button>Skicka bokningsförfrågan</button>
+        <button class="calendar__book-form__submit-button"
+          >Skicka bokningsförfrågan</button
+        >
         <p class="calendar__book-form__description">
           Att skicka en bokningsförfrågan innebär inte att du har bokat något.
           Vi kontaktar dig så fort vi kan med mer info
@@ -57,19 +64,28 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
   </div>
 </div>
 
-<style lang="scss">
+<style is:global lang="scss">
   @use "sass:math";
   @use "@/styles/vars";
 
   .calendar {
-    &:global(.not-loaded) {
-      opacity: 0;
-    }
     border: solid 1px var(--border-primary);
     border-radius: vars.spacing(0.5);
     background-color: var(--background-secondary);
     overflow: hidden;
-    transition: height 0.2s;
+
+    &.calendar--transitioning {
+      transition: height 0.2s;
+    }
+
+    &[data-form-open="false"] {
+      transition: height 0.2s;
+    }
+
+    &.not-loaded {
+      transition: none;
+      opacity: 0;
+    }
   }
 
   .calendar__inner {
@@ -79,7 +95,7 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
     transition: transform 0.2s;
     transform: translateX(0%);
 
-    &:global(.calendar__inner--form) {
+    &.calendar__inner--form {
       transform: translateX(-50%);
     }
 
@@ -109,7 +125,7 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
     }
   }
 
-  :global(.calendar__header__title) {
+  .calendar__header__title {
     cursor: pointer;
     user-select: none;
   }
@@ -130,7 +146,6 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
     textarea {
       margin-bottom: vars.spacing(2);
       height: 150px;
-      resize: none;
     }
 
     button {
@@ -159,7 +174,7 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
     justify-content: center;
     gap: vars.spacing(1);
 
-    :global(svg) {
+    svg {
       height: 1rem;
     }
   }
@@ -180,7 +195,7 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
     padding: vars.spacing(0, 0);
   }
 
-  :global(.calendar__week-inner) {
+  .calendar__week-inner {
     padding: vars.spacing(2, 3);
     display: flex;
     align-items: center;
@@ -193,13 +208,13 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
     }
   }
 
-  :global(.calendar__week-inner-chevron) {
-    :global(svg) {
+  .calendar__week-inner-chevron {
+    svg {
       height: 1rem;
     }
   }
 
-  :global(.calendar__week) {
+  .calendar__week {
     all: unset;
     display: block;
     width: 100%;
@@ -248,5 +263,18 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .calendar__book-form__submit-success-cont {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: vars.spacing(2);
+    flex-direction: column;
+
+    p {
+      text-align: center;
+    }
   }
 </style>
