@@ -20,23 +20,21 @@ $spacing-unit: 8px;
     "phone": 660,
   );
 
-@if $direction !="up" and $direction !="down" {
-  @error 'Direction must be either up or down';
-}
+  @if $direction != "up" and $direction != "down" {
+    @error 'Direction must be either up or down';
+  }
 
-@if map-has-key($breakpoints, $name)==false {
-  @error 'Breakpoint #{$name} does not exist';
-}
+  @if map-has-key($breakpoints, $name) ==false {
+    @error 'Breakpoint #{$name} does not exist';
+  }
 
-$size: map.get($breakpoints, $name);
+  $size: map.get($breakpoints, $name);
 
-@if $direction =="up" {
-  @return "min-width: #{$size}px";
-}
-
-@else {
-  @return "max-width: #{$size - 1}px";
-}
+  @if $direction == "up" {
+    @return "min-width: #{$size}px";
+  } @else {
+    @return "max-width: #{$size - 1}px";
+  }
 }
 
 @mixin break($name, $direction) {
