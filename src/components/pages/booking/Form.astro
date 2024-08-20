@@ -1,13 +1,13 @@
 ---
-import Calendar from '../../ui/Calendar.svelte'
-import Image from '../../ui/Image.astro'
+import Calendar from '@/components/ui/Calendar.svelte'
+import Image from '@/components/ui/Image.astro'
 ---
 
 <div class="booking__form cont cont--spacing-bottom">
 <div class="inner booking__form__grid">
 
   <div class="c-2 c-4-tablet booking__form__content">
-    <h1>Boka brusckvallen</h1>
+    <h1>Boka Brusckvallen</h1>
     <p>Vi har lediga veckor under vintersäsongen som du kan se i vår kalender. För bokningar eller frågor, kontakta oss gärna på boka@brusckvallen.se. Byten sker normalt på söndagar.*</p>
     <p>*För julveckan 2025 sker bytet istället på lördag. Om du vill checka in tidigare kan du lägga till extra dagar för 900 kr per dygn, med start tidigast från den 15/12. Andra veckor kan torsdag till söndag vara tillgängliga beroende på övriga bokningar. Kontakta oss för att diskutera dina önskemål.</p>
     <p>Utcheckning sker senast kl. 10:00, och incheckning tidigast kl. 16:00. Vi vill att stugan hålls rökfri och husdjursfri. Du tar med egna sängkläder och handdukar. Slutstädning ingår inte i priset, men vi kan hjälpa till att ordna kontakt med Stugservice för detta. Tänk på att boka i god tid då de ofta är fullbokade.</p>
@@ -41,28 +41,24 @@ import Image from '../../ui/Image.astro'
 </div>
 
 <style lang="scss">
-@import "../../../styles/variables.scss";
-
-.booking__form {
-  margin-top: spacing(4);
-}
+@use "@/styles/vars";
 
 .booking__form__content {
   h1 {
-    margin-bottom: spacing(1);
+    margin-bottom: vars.spacing(1);
   }
 
   p {
-    margin-bottom: spacing(1);
+    margin-bottom: vars.spacing(1);
   }
 }
 
 .booking__form__person-cont {
-  margin-top: spacing(2);
+  margin-top: vars.spacing(2);
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  @include break(tablet, down) {
+  @include vars.break(tablet, down) {
     display: none;
   }
 }
@@ -70,12 +66,12 @@ import Image from '../../ui/Image.astro'
 .booking__form__person {
   display: flex;
   align-items: center;
-  gap: spacing(2);
+  gap: vars.spacing(2);
 
 }
 
 .booking__form__grid {
-  row-gap: spacing(2);
+  row-gap: vars.spacing(2);
 }
 
 .booking__form__person-image {

@@ -1,6 +1,6 @@
 ---
-import Image from "../../ui/Image.astro";
-import Koket from "../../../images/Koket.ts";
+import Image from "@/components/ui/Image.astro";
+import Koket from "@/images/Koket.ts";
 ---
 
 <div class="booking__hero__image">
@@ -8,12 +8,13 @@ import Koket from "../../../images/Koket.ts";
 </div>
 
 <style lang="scss">
-@import "../../../styles/variables.scss";
+@use "@/styles/vars";
 
 .booking__hero__image {
   position: relative;
   height: 300px;
   width: 100%;
+  margin-bottom: vars.spacing(4);
 }
 
 </style>

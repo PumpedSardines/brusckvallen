@@ -2,8 +2,8 @@
 import dayjs from 'dayjs'
 import weekOfYear from "dayjs/plugin/weekOfYear";
 
-import chevronRight from "../../icons/chevron-right.svg?raw"
-import chevronLeft from "../../icons/chevron-left.svg?raw"
+import chevronRight from "@/icons/chevron-right.svg?raw"
+import chevronLeft from "@/icons/chevron-left.svg?raw"
 
 dayjs.extend(weekOfYear)
 const swedishLocale = {
@@ -84,17 +84,16 @@ $: weeks = getWeeksInMonth(currentDate)
 
 <style lang="scss">
 @use "sass:math";
-
-@import "../../styles/variables.scss";
+@use "@/styles/vars";
 
 .calendar {
   border: solid 1px var(--border-primary);
   background-color: var(--background-secondary);
-  padding-bottom: spacing(2);
+  padding-bottom: vars.spacing(2);
 }
 
 .calendar__header {
-  padding: spacing(2, 3);
+  padding: vars.spacing(2, 3);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -115,10 +114,10 @@ $: weeks = getWeeksInMonth(currentDate)
 }
 
 .calendar__header__line {
-  width: calc(100% - #{spacing(4)});
+  width: calc(100% - #{vars.spacing(4)});
   height: 1px;
-  margin: spacing(2);
-  margin-bottom: spacing(1);
+  margin: vars.spacing(2);
+  margin-bottom: vars.spacing(1);
   background-color: var(--border-primary);
 }
 
@@ -127,22 +126,22 @@ $: weeks = getWeeksInMonth(currentDate)
 }
 
 .calendar__weeks {
-  padding: spacing(0, 0);
+  padding: vars.spacing(0, 0);
 }
 
 .calendar__week-inner {
-  padding: spacing(2, 1);
+  padding: vars.spacing(2, 1);
 }
 
 .calendar__week {
-  padding: spacing(0, 1);
-  margin-top: spacing(2);
+  padding: vars.spacing(0, 1);
+  margin-top: vars.spacing(2);
   box-sizing: border-box;
 
   position: relative;
 
   .larger {
-    margin-bottom: spacing(0.5);
+    margin-bottom: vars.spacing(0.5);
   }
 
   &::before {
@@ -150,15 +149,15 @@ $: weeks = getWeeksInMonth(currentDate)
     display: block;
     position: absolute;
     left: 50%;
-    top: spacing(-1);
+    top: vars.spacing(-1);
     transform: translateX(-50%);
-    width: calc(100% - #{spacing(4)});
+    width: calc(100% - #{vars.spacing(4)});
     height: 1px;
     background-color: var(--border-primary);
   }
 
   &:first-child {
-    margin-top: spacing(1);
+    margin-top: vars.spacing(1);
 
     &::before {
       display: none;
@@ -167,7 +166,7 @@ $: weeks = getWeeksInMonth(currentDate)
 }
 
 .calendar__footer {
-  padding: spacing(2, 3);
+  padding: vars.spacing(2, 3);
   display: flex;
   justify-content: center;
   align-items: center;

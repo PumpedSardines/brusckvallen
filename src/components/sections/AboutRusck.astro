@@ -1,7 +1,7 @@
 ---
-import Image from "../ui/Image.astro";
-import SvanteKarinImage from "../../images/SvanteKarin.ts"
+import Image from "@/components/ui/Image.astro";
 
+import SvanteKarinImage from "@/images/SvanteKarin.ts"
 ---
 <div class="cont cont--spacing">
   <div class="inner">
@@ -26,13 +26,13 @@ import SvanteKarinImage from "../../images/SvanteKarin.ts"
 </div>
 
 <style lang="scss">
-@import "../../styles/variables";
+@use "@/styles/vars";
 
 .inner {
-  @include break(tablet, down) {
+  @include vars.break(tablet, down) {
     display: flex;
     flex-direction: column;
-    gap: spacing(2);
+    gap: vars.spacing(2);
   }
 }
 
@@ -41,7 +41,7 @@ import SvanteKarinImage from "../../images/SvanteKarin.ts"
   width: 100%;
   height: 400px;
 
-  @include break(phone, down) {
+  @include vars.break(phone, down) {
     height: 250px;
   }
 }
@@ -54,10 +54,10 @@ import SvanteKarinImage from "../../images/SvanteKarin.ts"
 }
 
 .about_rusck__header {
-  margin-bottom: spacing(1);
+  margin-bottom: vars.spacing(1);
 }
 
 .about_rusck__description {
-  margin-bottom: spacing(1.5);
+  margin-bottom: vars.spacing(1.5);
 }
 </style>

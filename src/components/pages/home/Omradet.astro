@@ -1,5 +1,5 @@
 ---
-import ImageGallery from "../../ui/ImageGallery.astro";
+import ImageGallery from "@/components/ui/ImageGallery.astro";
 ---
 <div class="cont home__omradet__top-area">
   <div class="inner">
@@ -65,18 +65,18 @@ import ImageGallery from "../../ui/ImageGallery.astro";
 </div>
 
 <style lang="scss">
-@import "../../../styles/variables.scss";
+@use "@styles/vars.scss";
 
 .home__omradet__top-area {
-  margin-bottom: spacing(4);
+  margin-bottom: vars.spacing(4);
 }
 
 .home__omradet__header {
-  margin-bottom: spacing(1);
+  margin-bottom: vars.spacing(1);
 }
 
 .home__omradet__description {
-  margin-bottom: spacing(1.5);
+  margin-bottom: vars.spacing(1.5);
 }
 
 .home__omradet__main-text {
@@ -87,6 +87,6 @@ import ImageGallery from "../../ui/ImageGallery.astro";
 .home__omradet__images-cont {
   display: flex;
   flex-direction: column;
-  gap: spacing(1);
+  gap: vars.spacing(1);
 }
 </style>

@@ -48,7 +48,7 @@ if (navElement != null) {
 <div class="spacer"></div>
 
 <style lang="scss">
-@import "../../styles/variables.scss";
+@use "@/styles/vars";
 
 .spacer {
   height: 62px;
@@ -64,7 +64,7 @@ if (navElement != null) {
 nav.nav {
   background-color: var(--background-primary);
   border-bottom: 1px solid var(--border-primary);
-  padding: spacing(2, 0);
+  padding: vars.spacing(2, 0);
   z-index: 100;
 
   position: fixed;
@@ -96,7 +96,7 @@ nav.nav {
     align-items: center;
     justify-content: flex-end;
 
-    @include break(phone, down) {
+    @include vars.break(phone, down) {
       display: none;
     }
   }
@@ -112,7 +112,7 @@ nav.nav {
     }
 
     li {
-      margin-left: spacing(4);
+      margin-left: vars.spacing(4);
 
       &:first-child {
         margin-left: 0;

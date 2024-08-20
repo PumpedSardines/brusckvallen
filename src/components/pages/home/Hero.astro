@@ -1,12 +1,12 @@
 ---
 
-import Image from "../../ui/Image.astro"
+import Image from "@/components/ui/Image.astro"
 
-import StuganInifranUtsikt from "../../../images/StuganInifranUtsikt.ts"
-import Sovrum from "../../../images/Sovrum.ts"
-import Koket from "../../../images/Koket.ts"
-import SkidSpar from "../../../images/SkidSpar.ts"
-import Badrum from "../../../images/Badrum.ts"
+import StuganInifranUtsikt from "@/components/images/StuganInifranUtsikt.ts"
+import Sovrum from "@/images/Sovrum.ts"
+import Koket from "@/images/Koket.ts"
+import SkidSpar from "@/images/SkidSpar.ts"
+import Badrum from "@/images/Badrum.ts"
 
 ---
 <div class="home__hero">
@@ -82,7 +82,7 @@ import Badrum from "../../../images/Badrum.ts"
 
 
 <style lang="scss">
-@import "../../../styles/variables.scss";
+@import "@styles/vars.scss";
 
 
 .home__hero {
@@ -106,20 +106,20 @@ import Badrum from "../../../images/Badrum.ts"
 
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: spacing(1);
+  gap: vars.spacing(1);
 
     grid-template-areas:
       "big-image big-image . ."
       "big-image big-image . .";
 
-  @include break("desktop", "down") {
+  @include vars.break("desktop", "down") {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
       "big-image big-image ."
       "big-image big-image .";
   }
 
-  @include break("phone", "down") {
+  @include vars.break("phone", "down") {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas:
@@ -132,7 +132,7 @@ import Badrum from "../../../images/Badrum.ts"
 .home__hero__image {
   position: relative;
 
-  @include break("desktop", "down") {
+  @include vars.break("desktop", "down") {
     &:nth-child(2) {
       display: none;
     }
@@ -142,7 +142,7 @@ import Badrum from "../../../images/Badrum.ts"
     }
   }
 
-  @include break("desktop", "down") {
+  @include vars.break("desktop", "down") {
     &:nth-child(4) {
       display: block;
     }
@@ -154,40 +154,44 @@ import Badrum from "../../../images/Badrum.ts"
 }
 
 .home__hero__image--long {
-  @include break("phone", "down") {
+  @include vars.break("phone", "down") {
     grid-area: long-image;
   }
 }
 
 .home__hero__text-cont-main {
-  padding-top: spacing(4);
+  padding-top: vars.spacing(4);
 
-  @include break("phone", "down") {
-    padding-top: spacing(2);
+  @include vars.break("phone", "down") {
+    padding-top: vars.spacing(2);
   }
 
   h1 {
-    margin-bottom: spacing(0.5);
+    margin-bottom: vars.spacing(0.5);
   }
 }
 
 .home__hero__selling-points {
-  margin-bottom: spacing(2);
+  margin-bottom: vars.spacing(2);
 }
 
 .home__hero__buttons {
   display: flex;
-  gap: spacing(1);
+  gap: vars.spacing(1);
+
+  p {
+    font-weight: 500;
+  }
 }
 
 .home__hero__text-cont-secondary {
-  padding-top: spacing(5);
+  padding-top: vars.spacing(5);
 
-  @include break("phone", "down") {
-    padding-top: spacing(0);
+  @include vars.break("phone", "down") {
+    padding-top: vars.spacing(0);
     display: flex;
     flex-direction: column;
-    gap: spacing(2);
+    gap: vars.spacing(2);
   }
 }
 
@@ -195,10 +199,10 @@ import Badrum from "../../../images/Badrum.ts"
   width: 100%;
   height: 1px;
   background-color: #ddd;
-  margin: spacing(8, 0);
+  margin: vars.spacing(8, 0);
 
-  @include break("phone", "down") {
-    margin: spacing(4, 0);
+  @include vars.break("phone", "down") {
+    margin: vars.spacing(4, 0);
   }
 }
 
@@ -206,7 +210,7 @@ import Badrum from "../../../images/Badrum.ts"
   display: none;
 }
 
-@include break("phone", "down") {
+@include vars.break("phone", "down") {
   .home__hero__buttons--desktop {
     display: none;
   }

@@ -1,4 +1,4 @@
-@import "variables.scss";
+@use "@/styles/vars";
 
 // Working in the middle of the night
 // The webpage is very bright, and it hurts my eyes
@@ -58,16 +58,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: spacing(0, 4);
+  padding: vars.spacing(0, 4);
   box-sizing: border-box;
   width: 100%;
 
-  @include break("tablet", down) {
-    padding: spacing(0, 2);
+  @include vars.break("tablet", down) {
+    padding: vars.spacing(0, 2);
   }
 
-  @include break("phone", down) {
-    padding: spacing(0, 1);
+  @include vars.break("phone", down) {
+    padding: vars.spacing(0, 1);
   }
 }
 
@@ -75,52 +75,53 @@ $cont-spacing: 16;
 $cont-spacing-phone: 8;
 
 .cont--spacing {
-  margin: spacing($cont-spacing, 0);
+  margin: vars.spacing($cont-spacing, 0);
 }
 
 .cont--spacing-top {
-  margin-top: spacing($cont-spacing);
+  margin-top: vars.spacing($cont-spacing);
 }
 
 .cont--spacing-bottom {
-  margin-bottom: spacing($cont-spacing);
+  margin-bottom: vars.spacing($cont-spacing);
 }
 
-@include break("phone", down) {
+@include vars.break("phone", down) {
   .cont--spacing {
-    margin: spacing($cont-spacing-phone, 0);
+    margin: vars.spacing($cont-spacing-phone, 0);
   }
 
   .cont--spacing-top {
-    margin-top: spacing($cont-spacing-phone);
+    margin-top: vars.spacing($cont-spacing-phone);
   }
 
   .cont--spacing-bottom {
-    margin-bottom: spacing($cont-spacing-phone);
+    margin-bottom: vars.spacing($cont-spacing-phone);
   }
 }
 
 .inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: spacing(4);
+  column-gap: vars.spacing(4);
 
-  row-gap: spacing(0);
+  row-gap: vars.spacing(0);
   max-width: 1200px;
   width: 100%;
 
-  @include break("tablet", down) {
-    column-gap: spacing(2);
+  @include vars.break("tablet", down) {
+    column-gap: vars.spacing(2);
   }
 
-  @include break("phone", down) {
+  @include vars.break("phone", down) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 input {
   width: 100%;
-  padding: spacing(1, 2);
+  border-radius: vars.spacing(0.5);
+  padding: vars.spacing(1, 2);
   box-sizing: border-box;
   font-size: 1rem;
   background-color: var(--background-primary);
@@ -128,13 +129,18 @@ input {
   font-family: var(--font-family-read);
 }
 
+button {
+  border-radius: vars.spacing(0.5);
+}
+
 textarea {
+  border-radius: vars.spacing(0.5);
   box-sizing: border-box;
   width: 100%;
   resize: vertical;
   height: 100px;
   min-height: 100px;
-  padding: spacing(1, 2);
+  padding: vars.spacing(1, 2);
 
   font-family: var(--font-family-read);
   font-size: 1rem;
@@ -154,7 +160,7 @@ textarea {
 .c-3 {
   grid-column: span 3;
 
-  @include break("phone", down) {
+  @include vars.break("phone", down) {
     grid-column: span 2;
   }
 }
@@ -162,27 +168,27 @@ textarea {
 .c-4 {
   grid-column: span 4;
 
-  @include break("phone", down) {
+  @include vars.break("phone", down) {
     grid-column: span 2;
   }
 }
 
 .c-3-tablet {
-  @include break("tablet", down) {
+  @include vars.break("tablet", down) {
     grid-column: span 3;
   }
 
-  @include break("phone", down) {
+  @include vars.break("phone", down) {
     grid-column: span 2;
   }
 }
 
 .c-4-tablet {
-  @include break("tablet", down) {
+  @include vars.break("tablet", down) {
     grid-column: span 4;
   }
 
-  @include break("phone", down) {
+  @include vars.break("phone", down) {
     grid-column: span 2;
   }
 }

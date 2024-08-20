@@ -1,4 +1,4 @@
-@import "variables.scss";
+@use "@/styles/vars";
 
 a {
   color: var(--primary);
@@ -21,7 +21,7 @@ h1 {
   font-weight: 700;
   font-family: var(--font-family-heading);
 
-  @include break("phone", down) {
+  @include vars.break(phone, down) {
     font-size: 2rem;
   }
 }

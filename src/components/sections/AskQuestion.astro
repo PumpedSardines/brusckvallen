@@ -12,9 +12,9 @@
   <input name="name" placeholder="Johan Andersson" />
   <label for="email">E-post:</label>
   <input name="email"  placeholder="johan.andersson@gmail.com" />
-  <label for="text">Medelande:</label>
+  <label for="text">Meddelande:</label>
   <textarea name='text'></textarea>
-  <button>Skicka medelande</button>
+  <button>Skicka meddelande</button>
 </form>
 
 </div>
@@ -23,51 +23,51 @@
 </div>
 
 <style lang="scss">
-@import '../../styles/variables.scss';
+@use "@/styles/vars";
 
 .ask-question__block {
-  @include break(tablet, down) {
+  @include vars.break(tablet, down) {
     display: none;
   }
 }
 
 .ask-question {
-  padding-top: spacing(7);
-  padding-bottom: spacing(8);
+  padding-top: vars.spacing(7);
+  padding-bottom: vars.spacing(8);
 
   background-color: var(--background-secondary);
   background-color: var(--primary-light);
 
-  @include break("phone", down) {
-    padding-top: spacing(4);
-    padding-bottom: spacing(4);
+  @include vars.break("phone", down) {
+    padding-top: vars.spacing(4);
+    padding-bottom: vars.spacing(4);
   }
 }
 
 .ask-question__heading {
-  margin-bottom: spacing(1);
+  margin-bottom: vars.spacing(1);
 }
 
 .ask-question__form {
-  @include break("phone", down) {
-    margin-top: spacing(2);
+  @include vars.break("phone", down) {
+    margin-top: vars.spacing(2);
   }
 
   label {
-    margin-bottom: spacing(0.5);
+    margin-bottom: vars.spacing(0.5);
   }
   
   p {
-    margin-bottom: spacing(2);
+    margin-bottom: vars.spacing(2);
   }
 
   input {
-    margin-bottom: spacing(2);
+    margin-bottom: vars.spacing(2);
   }
 
   button {
-    padding: spacing(1.5, 3);
-    margin-top: spacing(3);
+    padding: vars.spacing(1.5, 3);
+    margin-top: vars.spacing(3);
     cursor: pointer;
     border: none;
     background-color: #333;
