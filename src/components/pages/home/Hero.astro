@@ -1,40 +1,29 @@
 ---
+import Image from "@/components/ui/Image.astro";
 
-import Image from "@/components/ui/Image.astro"
-
-import StuganInifranUtsikt from "@/components/images/StuganInifranUtsikt.ts"
-import Sovrum from "@/images/Sovrum.ts"
-import Koket from "@/images/Koket.ts"
-import SkidSpar from "@/images/SkidSpar.ts"
-import Badrum from "@/images/Badrum.ts"
-
+import StuganInifranUtsikt from "@/components/images/StuganInifranUtsikt.ts";
+import Sovrum from "@/images/Sovrum.ts";
+import Koket from "@/images/Koket.ts";
+import SkidSpar from "@/images/SkidSpar.ts";
+import Badrum from "@/images/Badrum.ts";
 ---
+
 <div class="home__hero">
   <div class="home__hero__image-cont">
     <div class="home__hero__image home__hero__image--big">
-      <Image
-        {...StuganInifranUtsikt}
-      />
+      <Image {...StuganInifranUtsikt} />
     </div>
     <div class="home__hero__image">
-      <Image
-        {...Sovrum}
-      />
+      <Image {...Sovrum} />
     </div>
     <div class="home__hero__image">
-      <Image
-        {...Koket}
-      />
+      <Image {...Koket} />
     </div>
     <div class="home__hero__image home__hero__image--long">
-      <Image
-        {...SkidSpar}
-      />
+      <Image {...SkidSpar} />
     </div>
     <div class="home__hero__image">
-      <Image
-        {...Badrum}
-      />
+      <Image {...Badrum} />
     </div>
   </div>
   <div class="cont">
@@ -42,7 +31,8 @@ import Badrum from "@/images/Badrum.ts"
       <div class="c-2 home__hero__text-cont-main">
         <h1>Brusckvallen</h1>
         <p class="home__hero__selling-points">
-          8 bäddar &bull; 2 badrum &bull; Nybyggt 2023 &bull; Bastu&nbsp;&bull;&nbsp;Eldstad
+          8 bäddar &bull; 2 badrum &bull; Nybyggt 2023 &bull;
+          Bastu&nbsp;&bull;&nbsp;Eldstad
         </p>
         <div class="home__hero__buttons home__hero__buttons--desktop">
           <a href="/bokning-och-fragor">
@@ -55,7 +45,11 @@ import Badrum from "@/images/Badrum.ts"
       </div>
       <div class="c-2 home__hero__text-cont-secondary">
         <p>
-          Upplev lugnet i Brusckvallen – en charmig stuga i hjärtat av Bruksvallarna. Här omges du av storslagen natur, perfekt för både avkoppling och äventyr. Njut av vandring, fiske och magiska kvällar vid brasan. Denna stuga är din perfekta tillflyktsort för en oförglömlig vecka i naturens famn.
+          Upplev lugnet i Brusckvallen – en charmig stuga i hjärtat av
+          Bruksvallarna. Här omges du av storslagen natur, perfekt för både
+          avkoppling och äventyr. Njut av vandring, fiske och magiska kvällar
+          vid brasan. Denna stuga är din perfekta tillflyktsort för en
+          oförglömlig vecka i naturens famn.
         </p>
         <div class="home__hero__buttons home__hero__buttons--phone">
           <a href="/bokning-och-fragor">
@@ -71,152 +65,148 @@ import Badrum from "@/images/Badrum.ts"
 </div>
 
 <div class="cont">
-<div class="inner">
-<div class="c-4">
-
-<div class="home__hero__divider"></div>
-
+  <div class="inner">
+    <div class="c-4">
+      <div class="home__hero__divider"></div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-
 
 <style lang="scss">
-@import "@styles/vars.scss";
+  @import "@styles/vars.scss";
 
+  .home__hero {
+    width: 100%;
+    height: calc(95vh - 62px);
+    min-height: calc(750px - 62px);
 
-.home__hero {
-  width: 100%;
-  height: calc(95vh - 62px);
-  min-height: calc(750px - 62px);
+    box-sizing: border-box;
 
-  box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  .home__hero__image-cont {
+    flex: 3;
+    display: grid;
 
-.home__hero__image-cont {
-  flex: 3;
-  display: grid;
+    width: 100%;
 
-  width: 100%;
-
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: vars.spacing(1);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: vars.spacing(1);
 
     grid-template-areas:
       "big-image big-image . ."
       "big-image big-image . .";
 
-  @include vars.break("desktop", "down") {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      "big-image big-image ."
-      "big-image big-image .";
-  }
-
-  @include vars.break("phone", "down") {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-areas:
-      "big-image big-image"
-      ". ."
-      "long-image long-image";
-  }
-}
-
-.home__hero__image {
-  position: relative;
-
-  @include vars.break("desktop", "down") {
-    &:nth-child(2) {
-      display: none;
+    @include vars.break("desktop", "down") {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "big-image big-image ."
+        "big-image big-image .";
     }
 
-    &:nth-child(4) {
-      display: none;
+    @include vars.break("phone", "down") {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-areas:
+        "big-image big-image"
+        ". ."
+        "long-image long-image";
     }
   }
 
-  @include vars.break("desktop", "down") {
-    &:nth-child(4) {
-      display: block;
+  .home__hero__image {
+    position: relative;
+
+    @include vars.break("desktop", "down") {
+      &:nth-child(2) {
+        display: none;
+      }
+
+      &:nth-child(4) {
+        display: none;
+      }
+    }
+
+    @include vars.break("desktop", "down") {
+      &:nth-child(4) {
+        display: block;
+      }
     }
   }
-}
 
-.home__hero__image--big {
-  grid-area: big-image;
-}
-
-.home__hero__image--long {
-  @include vars.break("phone", "down") {
-    grid-area: long-image;
-  }
-}
-
-.home__hero__text-cont-main {
-  padding-top: vars.spacing(4);
-
-  @include vars.break("phone", "down") {
-    padding-top: vars.spacing(2);
+  .home__hero__image--big {
+    grid-area: big-image;
   }
 
-  h1 {
-    margin-bottom: vars.spacing(0.5);
+  .home__hero__image--long {
+    @include vars.break("phone", "down") {
+      grid-area: long-image;
+    }
   }
-}
 
-.home__hero__selling-points {
-  margin-bottom: vars.spacing(2);
-}
+  .home__hero__text-cont-main {
+    padding-top: vars.spacing(4);
 
-.home__hero__buttons {
-  display: flex;
-  gap: vars.spacing(1);
+    @include vars.break("phone", "down") {
+      padding-top: vars.spacing(2);
+    }
 
-  p {
-    font-weight: 500;
+    h1 {
+      margin-bottom: vars.spacing(0.5);
+    }
   }
-}
 
-.home__hero__text-cont-secondary {
-  padding-top: vars.spacing(5);
+  .home__hero__selling-points {
+    margin-bottom: vars.spacing(2);
+  }
 
-  @include vars.break("phone", "down") {
-    padding-top: vars.spacing(0);
+  .home__hero__buttons {
     display: flex;
-    flex-direction: column;
-    gap: vars.spacing(2);
+    gap: vars.spacing(1);
+
+    p {
+      font-weight: 500;
+    }
   }
-}
 
-.home__hero__divider {
-  width: 100%;
-  height: 1px;
-  background-color: #ddd;
-  margin: vars.spacing(8, 0);
+  .home__hero__text-cont-secondary {
+    padding-top: vars.spacing(5);
 
-  @include vars.break("phone", "down") {
-    margin: vars.spacing(4, 0);
+    @include vars.break("phone", "down") {
+      padding-top: vars.spacing(0);
+      display: flex;
+      flex-direction: column;
+      gap: vars.spacing(2);
+    }
   }
-}
 
-.home__hero__buttons--phone {
-  display: none;
-}
+  .home__hero__divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: vars.spacing(8, 0);
 
-@include vars.break("phone", "down") {
-  .home__hero__buttons--desktop {
-    display: none;
+    @include vars.break("phone", "down") {
+      margin: vars.spacing(4, 0);
+    }
   }
 
   .home__hero__buttons--phone {
-    display: flex;
+    display: none;
   }
-}
+
+  @include vars.break("phone", "down") {
+    .home__hero__buttons--desktop {
+      display: none;
+    }
+
+    .home__hero__buttons--phone {
+      display: flex;
+    }
+  }
 </style>

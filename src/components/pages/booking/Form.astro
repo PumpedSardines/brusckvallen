@@ -1,90 +1,103 @@
 ---
-import Calendar from '@/components/ui/Calendar.svelte'
-import Image from '@/components/ui/Image.astro'
+import Calendar from "@/components/ui/Calendar.svelte";
+import Image from "@/components/ui/Image.astro";
 ---
 
 <div class="booking__form cont cont--spacing-bottom">
-<div class="inner booking__form__grid">
-
-  <div class="c-2 c-4-tablet booking__form__content">
-    <h1>Boka Brusckvallen</h1>
-    <p>Vi har lediga veckor under vintersäsongen som du kan se i vår kalender. För bokningar eller frågor, kontakta oss gärna på boka@brusckvallen.se. Byten sker normalt på söndagar.*</p>
-    <p>*För julveckan 2025 sker bytet istället på lördag. Om du vill checka in tidigare kan du lägga till extra dagar för 900 kr per dygn, med start tidigast från den 15/12. Andra veckor kan torsdag till söndag vara tillgängliga beroende på övriga bokningar. Kontakta oss för att diskutera dina önskemål.</p>
-    <p>Utcheckning sker senast kl. 10:00, och incheckning tidigast kl. 16:00. Vi vill att stugan hålls rökfri och husdjursfri. Du tar med egna sängkläder och handdukar. Slutstädning ingår inte i priset, men vi kan hjälpa till att ordna kontakt med Stugservice för detta. Tänk på att boka i god tid då de ofta är fullbokade.</p>
-    <div class="booking__form__person-cont">
-      <div class="booking__form__person">
-        <div class="booking__form__person-image">
-          <Image src="/images/svante/1600.png" alt="Svante" />
+  <div class="inner booking__form__grid">
+    <div class="c-2 c-4-tablet booking__form__content">
+      <h1>Boka Brusckvallen</h1>
+      <p>
+        Vi har lediga veckor under vintersäsongen som du kan se i vår kalender.
+        För bokningar eller frågor, kontakta oss gärna på boka@brusckvallen.se.
+        Byten sker normalt på söndagar.*
+      </p>
+      <p>
+        *För julveckan 2025 sker bytet istället på lördag. Om du vill checka in
+        tidigare kan du lägga till extra dagar för 900 kr per dygn, med start
+        tidigast från den 15/12. Andra veckor kan torsdag till söndag vara
+        tillgängliga beroende på övriga bokningar. Kontakta oss för att
+        diskutera dina önskemål.
+      </p>
+      <p>
+        Utcheckning sker senast kl. 10:00, och incheckning tidigast kl. 16:00.
+        Vi vill att stugan hålls rökfri och husdjursfri. Du tar med egna
+        sängkläder och handdukar. Slutstädning ingår inte i priset, men vi kan
+        hjälpa till att ordna kontakt med Stugservice för detta. Tänk på att
+        boka i god tid då de ofta är fullbokade.
+      </p>
+      <div class="booking__form__person-cont">
+        <div class="booking__form__person">
+          <div class="booking__form__person-image">
+            <Image src="/images/svante/1600.png" alt="Svante" />
+          </div>
+          <div class="booking__form__person-content">
+            <p class="larger">Svante Rusck</p>
+            <p>+46 70 327 25 25</p>
+          </div>
         </div>
-        <div class="booking__form__person-content">
-          <p class="larger">Svante Rusck</p>
-          <p>+46 70 327 25 25</p>
-        </div>
-      </div>
-      <div class="booking__form__person">
-        <div class="booking__form__person-image">
-          <Image src="/images/svante/1600.png" alt="Svante" />
-        </div>
-        <div class="booking__form__person-content">
-          <p class="larger">Karin Rusck</p>
-          <p>+46 70 327 25 25</p>
+        <div class="booking__form__person">
+          <div class="booking__form__person-image">
+            <Image src="/images/svante/1600.png" alt="Svante" />
+          </div>
+          <div class="booking__form__person-content">
+            <p class="larger">Karin Rusck</p>
+            <p>+46 70 327 25 25</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="c-2 c-4-tablet">
-    <Calendar client:only />
+    <div class="c-2 c-4-tablet">
+      <Calendar client:only />
+    </div>
   </div>
-
-</div>
 </div>
 
 <style lang="scss">
-@use "@/styles/vars";
+  @use "@/styles/vars";
 
-.booking__form__content {
-  h1 {
-    margin-bottom: vars.spacing(1);
+  .booking__form__content {
+    h1 {
+      margin-bottom: vars.spacing(1);
+    }
+
+    p {
+      margin-bottom: vars.spacing(1);
+    }
   }
 
-  p {
-    margin-bottom: vars.spacing(1);
+  .booking__form__person-cont {
+    margin-top: vars.spacing(2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @include vars.break(tablet, down) {
+      display: none;
+    }
   }
-}
 
-.booking__form__person-cont {
-  margin-top: vars.spacing(2);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  @include vars.break(tablet, down) {
-    display: none;
+  .booking__form__person {
+    display: flex;
+    align-items: center;
+    gap: vars.spacing(2);
   }
-}
 
-.booking__form__person {
-  display: flex;
-  align-items: center;
-  gap: vars.spacing(2);
-
-}
-
-.booking__form__grid {
-  row-gap: vars.spacing(2);
-}
-
-.booking__form__person-image {
-  position: relative;
-  height: 90px;
-  width: 90px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.booking__form__person-content {
-  p {
-    margin: 0;
+  .booking__form__grid {
+    row-gap: vars.spacing(2);
   }
-}
+
+  .booking__form__person-image {
+    position: relative;
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .booking__form__person-content {
+    p {
+      margin: 0;
+    }
+  }
 </style>

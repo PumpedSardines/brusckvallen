@@ -1,77 +1,75 @@
 <script>
+  import dayjs from "dayjs";
 
-import dayjs from 'dayjs'
+  const calendars = document.querySelectorAll(".calendar");
 
-const calendars = document.querySelectorAll('.calendar');
+  function getWeekDay(date) {
+    const day = date.day();
+    return day;
 
-function getWeekDay(date) {
-  const day = date.day();
-  return day;
-
-  // Use if monday is first
-  return day === 0 ? 6 : day - 1;
-}
-
-for (const calendar of calendars) {
-  
-  const daysContainer = calendar.querySelector('.calendar__days');
-  let date = dayjs().add(0, 'month');
-  render();
-
-  function render() {
-    daysContainer.innerHTML = `
-    `;
-
-    const daysInMonth = date.daysInMonth();
-    const firstWeekday = getWeekDay(date.startOf('month'));
-    const lastWeekday = getWeekDay(date.endOf('month'));
-
-    for (let i = 0; i < firstWeekday; i++) {
-      const currentDate = date.startOf("month").subtract(firstWeekday - i, 'days');
-      const emptyDay = document.createElement('div');
-      emptyDay.classList.add('calendar__day');
-      emptyDay.classList.add('calendar__day--previous-month');
-      if (currentDate.day() === 0) {
-        emptyDay.classList.add('calendar__day--sunday');
-      }
-      emptyDay.textContent = currentDate.date();
-      daysContainer.appendChild(emptyDay);
-    }
-
-    for (let i = 1; i <= daysInMonth; i++) {
-      const currentDate = date.startOf("month").add(i - 1, 'days');
-      const day = document.createElement('div');
-      day.classList.add('calendar__day');
-      day.textContent = currentDate.date();
-      if (currentDate.day() === 0) {
-        day.classList.add('calendar__day--sunday');
-      }
-      daysContainer.appendChild(day);
-    }
-
-    for (let i = lastWeekday; i < 6; i++) {
-      const currentDate = date.endOf("month").add(i - lastWeekday + 1, 'days');
-      const emptyDay = document.createElement('div');
-      emptyDay.classList.add('calendar__day');
-      emptyDay.classList.add('calendar__day--previous-month');
-      if (currentDate.day() === 0) {
-        emptyDay.classList.add('calendar__day--sunday');
-      }
-      emptyDay.textContent = currentDate.date();
-      daysContainer.appendChild(emptyDay);
-    }
+    // Use if monday is first
+    return day === 0 ? 6 : day - 1;
   }
 
-}
+  for (const calendar of calendars) {
+    const daysContainer = calendar.querySelector(".calendar__days");
+    let date = dayjs().add(0, "month");
+    render();
 
+    function render() {
+      daysContainer.innerHTML = `
+    `;
+
+      const daysInMonth = date.daysInMonth();
+      const firstWeekday = getWeekDay(date.startOf("month"));
+      const lastWeekday = getWeekDay(date.endOf("month"));
+
+      for (let i = 0; i < firstWeekday; i++) {
+        const currentDate = date
+          .startOf("month")
+          .subtract(firstWeekday - i, "days");
+        const emptyDay = document.createElement("div");
+        emptyDay.classList.add("calendar__day");
+        emptyDay.classList.add("calendar__day--previous-month");
+        if (currentDate.day() === 0) {
+          emptyDay.classList.add("calendar__day--sunday");
+        }
+        emptyDay.textContent = currentDate.date();
+        daysContainer.appendChild(emptyDay);
+      }
+
+      for (let i = 1; i <= daysInMonth; i++) {
+        const currentDate = date.startOf("month").add(i - 1, "days");
+        const day = document.createElement("div");
+        day.classList.add("calendar__day");
+        day.textContent = currentDate.date();
+        if (currentDate.day() === 0) {
+          day.classList.add("calendar__day--sunday");
+        }
+        daysContainer.appendChild(day);
+      }
+
+      for (let i = lastWeekday; i < 6; i++) {
+        const currentDate = date
+          .endOf("month")
+          .add(i - lastWeekday + 1, "days");
+        const emptyDay = document.createElement("div");
+        emptyDay.classList.add("calendar__day");
+        emptyDay.classList.add("calendar__day--previous-month");
+        if (currentDate.day() === 0) {
+          emptyDay.classList.add("calendar__day--sunday");
+        }
+        emptyDay.textContent = currentDate.date();
+        daysContainer.appendChild(emptyDay);
+      }
+    }
+  }
 </script>
 
 <div class="calendar">
-
   <div class="calendar__header">
     <p class="larger">Augusti 2024</p>
   </div>
-
 
   <div class="calendar__week-days">
     <div><p>Sön</p></div>
@@ -84,7 +82,7 @@ for (const calendar of calendars) {
   </div>
 
   <div class="calendar__header__line"></div>
-  
+
   <div class="calendar__outer-days">
     <div style="--offset: 0" class="calendar__week-line">
       <p>17 000 kr</p>
@@ -93,119 +91,112 @@ for (const calendar of calendars) {
       <p>11 000 kr</p>
     </div>
     <div class="calendar__days"></div>
-  </div
-
-  {/*
-  <div class="calendar__footer">
-    <p>Inga bookningsbara tider tillgängliga i Augusti</p>
   </div>
-  */}
+
+  <style lang="scss">
+    @use "sass:math";
+
+    @import "../../styles/variables.scss";
+
+    .calendar {
+      border: solid 1px var(--border-primary);
+      background-color: var(--background-secondary);
+
+      padding-bottom: spacing(2);
+    }
+
+    .calendar__header {
+      padding: spacing(2, 3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 0;
+    }
+
+    .calendar__header__line {
+      width: calc(100% - #{spacing(4)});
+      height: 1px;
+      margin: spacing(2);
+      margin-top: 0;
+      margin-bottom: spacing(1);
+      background-color: var(--border-primary);
+    }
+
+    .calendar__week-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: spacing(1);
+      margin-top: spacing(3);
+
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .calendar__outer-days {
+      position: relative;
+    }
+
+    .calendar__days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    .calendar__footer {
+      padding: spacing(2, 3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .calendar__week-line {
+      $height: 21.5px + $spacing-unit * 4;
+      $margin: $spacing-unit;
+      $transform-y: math.div($margin, 2) + 6px;
+
+      position: absolute;
+      height: $height - $margin;
+      transform: translateY(#{$transform-y});
+      width: calc(100% - #{spacing(2)});
+      background-color: var(--border-primary);
+      top: calc(var(--offset) * #{$height});
+      z-index: 0;
+      left: spacing(1);
+      border-radius: 1000px;
+
+      p {
+        position: absolute;
+        left: 50%;
+        bottom: spacing(0.25);
+        transform: translateX(-50%);
+        z-index: 1;
+        font-size: 0.65rem;
+        color: var(--text-primary);
+      }
+    }
+
+    :global(.calendar__day) {
+      font-weight: 500;
+      padding: spacing(2, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+
+      &:global(.calendar__day--sunday) {
+        color: var(--calendar-sunday);
+      }
+    }
+
+    :global(.calendar__day--previous-month) {
+      color: var(--text-disabled);
+
+      &:global(.calendar__day--sunday) {
+        color: var(--calendar-sunday-light);
+      }
+    }
+  </style>
 </div>
-
-<style lang="scss">
-@use "sass:math";
-
-@import "../../styles/variables.scss";
-
-.calendar {
-  border: solid 1px var(--border-primary);
-  background-color: var(--background-secondary);
-
-  padding-bottom: spacing(2);
-}
-
-.calendar__header {
-  padding: spacing(2, 3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 0;
-}
-
-.calendar__header__line {
-  width: calc(100% - #{spacing(4)});
-  height: 1px;
-  margin: spacing(2);
-  margin-top: 0;
-  margin-bottom: spacing(1);
-  background-color: var(--border-primary);
-}
-
-.calendar__week-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin-bottom: spacing(1);
-  margin-top: spacing(3);
-
-  > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.calendar__outer-days {
-  position: relative;
-}
-
-.calendar__days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
-
-.calendar__footer {
-  padding: spacing(2, 3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.calendar__week-line {
-  $height: 21.5px + $spacing-unit * 4;
-  $margin: $spacing-unit;
-  $transform-y: math.div($margin, 2) + 6px;
-
-  position: absolute;
-  height: $height - $margin;
-  transform: translateY(#{$transform-y});
-  width: calc(100% - #{spacing(2)});
-  background-color: var(--border-primary);
-  top: calc(var(--offset) * #{$height});
-  z-index: 0;
-  left: spacing(1);
-  border-radius: 1000px;
-
-  p {
-    position: absolute;
-    left: 50%;
-    bottom: spacing(0.25);
-    transform: translateX(-50%);
-    z-index: 1;
-    font-size: 0.65rem;
-    color: var(--text-primary);
-  }
-}
-
-:global(.calendar__day) {
-  font-weight: 500;
-  padding: spacing(2, 0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-
-  &:global(.calendar__day--sunday) {
-    color: var(--calendar-sunday);
-  }
-}
-
-:global(.calendar__day--previous-month) {
-  color: var(--text-disabled);
-
-  &:global(.calendar__day--sunday) {
-    color: var(--calendar-sunday-light);
-  }
-}
-
-</style>

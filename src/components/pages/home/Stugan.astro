@@ -1,6 +1,7 @@
 ---
 import ImageGallery from "@/components/ui/ImageGallery.astro";
 ---
+
 <div class="cont home__stugan__top-area">
   <div class="inner">
     <div class="c-3 home__stugan__main-text">
@@ -13,80 +14,85 @@ import ImageGallery from "@/components/ui/ImageGallery.astro";
       </p>
       <p class="larger">
         <a href="#">Läs mer</a>
-      </P>
+      </p>
     </div>
   </div>
 </div>
 <div class="cont cont--spacing-bottom">
   <div class="inner">
     <div class="c-4 home__stugan__images-cont">
-      <ImageGallery type="big-left" images={[
-        {
-          src: "https://example.com/assets/images/stugan/stugan-1.jpg",
-          alt: "Stugan"
-        },
-        {
-          src: "https://example.com/assets/images/stugan/stugan-2.jpg",
-          alt: "Stugan"
-        },
-        {
-          src: "https://example.com/assets/images/stugan/stugan-3.jpg",
-          alt: "Stugan"
-        },
-        {
-          src: "https://example.com/assets/images/stugan/stugan-4.jpg",
-          alt: "Stugan"
-        },
-        {
-          src: "https://example.com/assets/images/stugan/stugan-5.jpg",
-          alt: "Stugan"
-        },
-      ]} />
-      <ImageGallery images={[
-        {
-          src: "https://example.com/assets/images/stugan/stugan-1.jpg",
-          alt: "Stugan"
-        },
-        {
-          src: "https://example.com/assets/images/stugan/stugan-2.jpg",
-          alt: "Stugan"
-        },
-        {
-          src: "https://example.com/assets/images/stugan/stugan-3.jpg",
-          alt: "Stugan"
-        },
-        {
-          src: "https://example.com/assets/images/stugan/stugan-4.jpg",
-          alt: "Stugan"
-        },
-      ]} />
+      <ImageGallery
+        type="big-left"
+        images={[
+          {
+            src: "https://example.com/assets/images/stugan/stugan-1.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-2.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-3.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-5.jpg",
+            alt: "Stugan",
+          },
+        ]}
+      />
+      <ImageGallery
+        images={[
+          {
+            src: "https://example.com/assets/images/stugan/stugan-1.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-2.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-3.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+        ]}
+      />
     </div>
   </div>
 </div>
 
 <style lang="scss">
-@import "@styles/vars.scss";
+  @import "@styles/vars.scss";
 
-.home__stugan__top-area {
-  margin-bottom: vars.spacing(4);
-}
+  .home__stugan__top-area {
+    margin-bottom: vars.spacing(4);
+  }
 
-.home__stugan__header {
-  margin-bottom: vars.spacing(1);
-}
+  .home__stugan__header {
+    margin-bottom: vars.spacing(1);
+  }
 
-.home__stugan__description {
-  margin-bottom: vars.spacing(1.5);
-}
+  .home__stugan__description {
+    margin-bottom: vars.spacing(1.5);
+  }
 
-.home__stugan__main-text {
-  display: flex;
-  flex-direction: column;
-}
+  .home__stugan__main-text {
+    display: flex;
+    flex-direction: column;
+  }
 
-.home__stugan__images-cont {
-  display: flex;
-  flex-direction: column;
-  gap: vars.spacing(1);
-}
+  .home__stugan__images-cont {
+    display: flex;
+    flex-direction: column;
+    gap: vars.spacing(1);
+  }
 </style>

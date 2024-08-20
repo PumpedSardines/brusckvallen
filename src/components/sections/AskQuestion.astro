@@ -1,86 +1,87 @@
 <div class="cont cont--spacing ask-question">
-<div class="inner">
+  <div class="inner">
+    <div class="c-1 ask-question__block"></div>
 
-<div class="c-1 ask-question__block">
-</div>
-
-<div class="c-2 c-4-tablet">
-  <form class="ask-question__form">
-  <h1 class="ask-question__heading">Har du en fråga?</h1>
-  <p>Fyll i formuläret här bredvid om du har frågor kring bokning, tillgänglighet, priser eller något annat relaterat till stugan Brusckvallen i Bruksvallarna. Vi återkommer till dig så snart som möjligt med svar!</p>
-  <label for="name">Namn:</label>
-  <input name="name" placeholder="Johan Andersson" />
-  <label for="email">E-post:</label>
-  <input name="email"  placeholder="johan.andersson@gmail.com" />
-  <label for="text">Meddelande:</label>
-  <textarea name='text'></textarea>
-  <button>Skicka meddelande</button>
-</form>
-
-</div>
-
-</div>
+    <div class="c-2 c-4-tablet">
+      <form class="ask-question__form">
+        <h1 class="ask-question__heading">Har du en fråga?</h1>
+        <p>
+          Fyll i formuläret här bredvid om du har frågor kring bokning,
+          tillgänglighet, priser eller något annat relaterat till stugan
+          Brusckvallen i Bruksvallarna. Vi återkommer till dig så snart som
+          möjligt med svar!
+        </p>
+        <label for="name">Namn:</label>
+        <input name="name" placeholder="Johan Andersson" />
+        <label for="email">E-post:</label>
+        <input name="email" placeholder="johan.andersson@gmail.com" />
+        <label for="text">Meddelande:</label>
+        <textarea name="text"></textarea>
+        <button>Skicka meddelande</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
-@use "@/styles/vars";
+  @use "@/styles/vars";
 
-.ask-question__block {
-  @include vars.break(tablet, down) {
-    display: none;
-  }
-}
-
-.ask-question {
-  padding-top: vars.spacing(7);
-  padding-bottom: vars.spacing(8);
-
-  background-color: var(--background-secondary);
-  background-color: var(--primary-light);
-
-  @include vars.break("phone", down) {
-    padding-top: vars.spacing(4);
-    padding-bottom: vars.spacing(4);
-  }
-}
-
-.ask-question__heading {
-  margin-bottom: vars.spacing(1);
-}
-
-.ask-question__form {
-  @include vars.break("phone", down) {
-    margin-top: vars.spacing(2);
+  .ask-question__block {
+    @include vars.break(tablet, down) {
+      display: none;
+    }
   }
 
-  label {
-    margin-bottom: vars.spacing(0.5);
-  }
-  
-  p {
-    margin-bottom: vars.spacing(2);
+  .ask-question {
+    padding-top: vars.spacing(7);
+    padding-bottom: vars.spacing(8);
+
+    background-color: var(--background-secondary);
+    background-color: var(--primary-light);
+
+    @include vars.break("phone", down) {
+      padding-top: vars.spacing(4);
+      padding-bottom: vars.spacing(4);
+    }
   }
 
-  input {
-    margin-bottom: vars.spacing(2);
+  .ask-question__heading {
+    margin-bottom: vars.spacing(1);
   }
 
-  button {
-    padding: vars.spacing(1.5, 3);
-    margin-top: vars.spacing(3);
-    cursor: pointer;
-    border: none;
-    background-color: #333;
-  background-color: var(--primary);
-    font-size: 1rem;
-    font-family: var(--font-family-heading);
-    font-weight: 700;
-    color: white;
-    width: 100%;
-  }
+  .ask-question__form {
+    @include vars.break("phone", down) {
+      margin-top: vars.spacing(2);
+    }
 
-  * {
-    display: block;
+    label {
+      margin-bottom: vars.spacing(0.5);
+    }
+
+    p {
+      margin-bottom: vars.spacing(2);
+    }
+
+    input {
+      margin-bottom: vars.spacing(2);
+    }
+
+    button {
+      padding: vars.spacing(1.5, 3);
+      margin-top: vars.spacing(3);
+      cursor: pointer;
+      border: none;
+      background-color: #333;
+      background-color: var(--primary);
+      font-size: 1rem;
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      color: white;
+      width: 100%;
+    }
+
+    * {
+      display: block;
+    }
   }
-}
 </style>

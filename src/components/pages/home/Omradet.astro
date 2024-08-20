@@ -1,6 +1,7 @@
 ---
 import ImageGallery from "@/components/ui/ImageGallery.astro";
 ---
+
 <div class="cont home__omradet__top-area">
   <div class="inner">
     <div class="c-3 home__omradet__main-text">
@@ -13,80 +14,85 @@ import ImageGallery from "@/components/ui/ImageGallery.astro";
       </p>
       <p class="larger">
         <a href="#">Läs mer</a>
-      </P>
+      </p>
     </div>
   </div>
 </div>
 <div class="cont cont--spacing-bottom">
   <div class="inner">
     <div class="c-4 home__omradet__images-cont">
-      <ImageGallery type="big-right" images={[
-        {
-          src: "https://example.com/assets/images/omradet/omradet-1.jpg",
-          alt: "omradet"
-        },
-        {
-          src: "https://example.com/assets/images/omradet/omradet-2.jpg",
-          alt: "omradet"
-        },
-        {
-          src: "https://example.com/assets/images/omradet/omradet-3.jpg",
-          alt: "omradet"
-        },
-        {
-          src: "https://example.com/assets/images/omradet/omradet-4.jpg",
-          alt: "omradet"
-        },
-        {
-          src: "https://example.com/assets/images/omradet/omradet-5.jpg",
-          alt: "omradet"
-        },
-      ]} />
-      <ImageGallery images={[
-        {
-          src: "https://example.com/assets/images/omradet/omradet-1.jpg",
-          alt: "omradet"
-        },
-        {
-          src: "https://example.com/assets/images/omradet/omradet-2.jpg",
-          alt: "omradet"
-        },
-        {
-          src: "https://example.com/assets/images/omradet/omradet-3.jpg",
-          alt: "omradet"
-        },
-        {
-          src: "https://example.com/assets/images/omradet/omradet-4.jpg",
-          alt: "omradet"
-        },
-      ]} />
+      <ImageGallery
+        type="big-right"
+        images={[
+          {
+            src: "https://example.com/assets/images/omradet/omradet-1.jpg",
+            alt: "omradet",
+          },
+          {
+            src: "https://example.com/assets/images/omradet/omradet-2.jpg",
+            alt: "omradet",
+          },
+          {
+            src: "https://example.com/assets/images/omradet/omradet-3.jpg",
+            alt: "omradet",
+          },
+          {
+            src: "https://example.com/assets/images/omradet/omradet-4.jpg",
+            alt: "omradet",
+          },
+          {
+            src: "https://example.com/assets/images/omradet/omradet-5.jpg",
+            alt: "omradet",
+          },
+        ]}
+      />
+      <ImageGallery
+        images={[
+          {
+            src: "https://example.com/assets/images/omradet/omradet-1.jpg",
+            alt: "omradet",
+          },
+          {
+            src: "https://example.com/assets/images/omradet/omradet-2.jpg",
+            alt: "omradet",
+          },
+          {
+            src: "https://example.com/assets/images/omradet/omradet-3.jpg",
+            alt: "omradet",
+          },
+          {
+            src: "https://example.com/assets/images/omradet/omradet-4.jpg",
+            alt: "omradet",
+          },
+        ]}
+      />
     </div>
   </div>
 </div>
 
 <style lang="scss">
-@use "@styles/vars.scss";
+  @use "@styles/vars.scss";
 
-.home__omradet__top-area {
-  margin-bottom: vars.spacing(4);
-}
+  .home__omradet__top-area {
+    margin-bottom: vars.spacing(4);
+  }
 
-.home__omradet__header {
-  margin-bottom: vars.spacing(1);
-}
+  .home__omradet__header {
+    margin-bottom: vars.spacing(1);
+  }
 
-.home__omradet__description {
-  margin-bottom: vars.spacing(1.5);
-}
+  .home__omradet__description {
+    margin-bottom: vars.spacing(1.5);
+  }
 
-.home__omradet__main-text {
-  display: flex;
-  flex-direction: column;
-}
+  .home__omradet__main-text {
+    display: flex;
+    flex-direction: column;
+  }
 
-.home__omradet__images-cont {
-  display: flex;
-  flex-direction: column;
-  gap: vars.spacing(1);
-}
+  .home__omradet__images-cont {
+    display: flex;
+    flex-direction: column;
+    gap: vars.spacing(1);
+  }
 </style>

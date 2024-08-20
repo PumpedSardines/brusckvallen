@@ -1,32 +1,31 @@
 ---
-import "@/styles/global.scss"
-import "@/styles/typography.scss"
-import "@/styles/fonts.scss"
+import "@/styles/global.scss";
+import "@/styles/typography.scss";
+import "@/styles/fonts.scss";
 
-import Nav from "@/components/ui/Nav.astro"
-import Footer from "@/components/ui/Footer.astro"
+import Nav from "@/components/ui/Nav.astro";
+import Footer from "@/components/ui/Footer.astro";
 
-import Form from "@/components/pages/booking/Form.astro"
+import Form from "@/components/pages/booking/Form.astro";
 
-import Hero from "@/components/sections/Hero.astro"
-import AskQuestion from "@/components/sections/AskQuestion.astro"
-import AboutRusck from "@/components/sections/AboutRusck.astro"
-
+import Hero from "@/components/sections/Hero.astro";
+import AskQuestion from "@/components/sections/AskQuestion.astro";
+import AboutRusck from "@/components/sections/AboutRusck.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Bokning & Frågor - Brusckvallen</title>
-	</head>
-	<body class="no-fade-nav">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Bokning & Frågor - Brusckvallen</title>
+  </head>
+  <body class="no-fade-nav">
     <Nav />
     <Hero />
     <Form />
     <AskQuestion />
     <AboutRusck />
     <Footer />
-	</body>
+  </body>
 </html>

@@ -1,74 +1,79 @@
 <footer class="cont footer">
-<div class="inner">
-<div class="c-4">
+  <div class="inner">
+    <div class="c-4">
+      <div class="footer__line"></div>
 
-<div class="footer__line"></div>
-
-<div class="footer__texts">
-  <p>Brusckvallen <span class="footer__copy-text">2023-2024 &copy;</span></p>
-  <p class="footer__sell-in-long">Hemsidan är gjord med kaffe och kärlek av <a href="#">Fritiof Rusck</a></p>
-  <p class="footer__sell-in-short">Skapad av <a href="https://fritiof.dev" target="_blank">Fritiof Rusck</a></p>
-</div>
-<div class="footer__copy-block">
-  <p>2023-2024 &copy;</p>
-</div>
-
-</div>
-</div>
+      <div class="footer__texts">
+        <p>
+          Brusckvallen <span class="footer__copy-text">2023-2024 &copy;</span>
+        </p>
+        <p class="footer__sell-in-long">
+          Hemsidan är gjord med kaffe och kärlek av <a href="#"
+            >Fritiof Rusck</a>
+        </p>
+        <p class="footer__sell-in-short">
+          Skapad av <a href="https://fritiof.dev" target="_blank"
+            >Fritiof Rusck</a>
+        </p>
+      </div>
+      <div class="footer__copy-block">
+        <p>2023-2024 &copy;</p>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <style lang="scss">
-@use "@/styles/vars";
+  @use "@/styles/vars";
 
-.footer {
-  padding-bottom: vars.spacing(8);
-}
-
-.footer__line {
-  width: 100%;
-  height: 1px;
-  background-color: var(--border-primary);
-  margin-bottom: vars.spacing(4);
-}
-
-@include vars.break(tablet, down) {
   .footer {
-    padding-bottom: vars.spacing(4);
+    padding-bottom: vars.spacing(8);
   }
 
   .footer__line {
-    margin-bottom: vars.spacing(2);
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-primary);
+    margin-bottom: vars.spacing(4);
   }
-}
 
-.footer__texts {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
+  @include vars.break(tablet, down) {
+    .footer {
+      padding-bottom: vars.spacing(4);
+    }
 
-.footer__sell-in-short {
-  display: none;
-}
+    .footer__line {
+      margin-bottom: vars.spacing(2);
+    }
+  }
 
-@include vars.break(tablet, down) {
-  .footer__sell-in-long {
-    display: none;
+  .footer__texts {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
   .footer__sell-in-short {
-    display: block;
+    display: none;
   }
-}
 
-.footer__copy-block {
-  display: none;
-}
+  @include vars.break(tablet, down) {
+    .footer__sell-in-long {
+      display: none;
+    }
 
-@include vars.break(phone, down) {
-  .footer__copy-text {
-    display: block;
+    .footer__sell-in-short {
+      display: block;
+    }
   }
-}
 
+  .footer__copy-block {
+    display: none;
+  }
+
+  @include vars.break(phone, down) {
+    .footer__copy-text {
+      display: block;
+    }
+  }
 </style>
