@@ -28,7 +28,7 @@ import Footer from "@/components/ui/Footer.astro";
 </html>
 
 <style lang="scss">
-  @import "@/styles/variables.scss";
+  @use "@/styles/vars";
 
   .main {
     height: calc(100vh - 62px);
@@ -44,6 +44,6 @@ import Footer from "@/components/ui/Footer.astro";
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: spacing(1);
+    gap: vars.spacing(1);
   }
 </style>

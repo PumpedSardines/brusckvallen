@@ -1,4 +1,4 @@
-<script context="module">
+<script lang="ts" context="module">
 import dayjs from 'dayjs'
 import weekOfYear from "dayjs/plugin/weekOfYear";
 
@@ -16,7 +16,7 @@ dayjs.locale(swedishLocale, null, true)
 dayjs.locale('sv')
 </script>
 
-<script>
+<script lang="ts">
 let currentDate = dayjs().startOf('month');
 
 function nextMonth() {

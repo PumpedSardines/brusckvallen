@@ -5,14 +5,17 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "check": "astro check && tsc --noEmit",
+    "build": "npm run fmt:check && npm run check && astro build",
     "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.2",
     "@astrojs/svelte": "^5.7.0",
+    "@astrojs/ts-plugin": "^1.10.1",
     "astro": "^4.14.2",
     "dayjs": "^1.11.12",
     "sass": "^1.77.8",

@@ -1,4 +1,10 @@
 ---
+interface Props {
+  src: string;
+  alt: string;
+  srcset?: { src: string; width: number }[];
+}
+
 const { src: srcRaw, alt, srcset: srcsetValues } = Astro.props;
 
 const srcset = srcsetValues
@@ -10,7 +16,7 @@ const srcset = srcsetValues
 const src = srcsetValues?.at(-1)?.src ?? srcRaw;
 ---
 
-<script>
+<script lang="ts">
   const elements = document.querySelectorAll(".image");
 
   for (const element of elements) {
