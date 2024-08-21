@@ -1,26 +1,68 @@
 ---
 import Image from "@/components/ui/Image.astro";
-import Koket from "@/images/Koket.ts";
 import type { Image as TImage } from "@/types";
 
 interface Props {
   image: TImage;
+  content?: {
+    title: string;
+    description: string;
+  };
 }
 
-const { image } = Astro.props;
+const { image, content } = Astro.props;
 ---
 
-<div class="booking__hero__image">
+<div class="hero__image">
   <Image image={image} />
 </div>
+
+<Fragment
+  >{
+    content == null ? null : (
+      <Fragment>
+        <div class="cont">
+          <div class="inner">
+            <div class="c-3">
+              <h1>{content.title}</h1>
+              <p>{content.description}</p>
+            </div>
+          </div>
+        </div>
+        <div class="cont">
+          <div class="inner">
+            <div class="c-4">
+              <div class="hero__divider" />
+            </div>
+          </div>
+        </div>
+      </Fragment>
+    )
+  }
+</Fragment>
 
 <style lang="scss">
   @use "@/styles/vars";
 
-  .booking__hero__image {
+  .hero__image {
     position: relative;
     height: 300px;
     width: 100%;
     margin-bottom: vars.spacing(4);
+  }
+
+  h1 {
+    margin-bottom: vars.spacing(1);
+  }
+
+  .hero__divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: vars.spacing(8, 0);
+
+    @include vars.break("phone", "down") {
+      margin: vars.spacing(4, 0);
+    }
   }
 </style>

@@ -1,0 +1,105 @@
+---
+import ImageGallery from "@/components/ui/ImageGallery.astro";
+---
+
+<div class="cont stugan__kitchen__top-part">
+  <div class="inner">
+    <div class="c-3">
+      <h1>Allrum och Kök</h1>
+      <p>
+        Brusckvallen har ett modernt kök som ligger i ett stort allrum med
+        fantastisk utsikt över fjället. Köket är fullt utrustat och ger dig
+        möjlighet att enkelt laga allt från snabba måltider till middagar för
+        större sällskap. Den öppna planlösningen skapar en inbjudande atmosfär,
+        där du kan laga mat och umgås med dina nära och kära samtidigt.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="cont">
+  <div class="inner">
+    <div class="c-4">
+      <ImageGallery
+        type="big-left"
+        images={[
+          {
+            src: "https://example.com/assets/images/stugan/stugan-1.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-2.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-3.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+        ]}
+      />
+    </div>
+  </div>
+</div>
+<div class="cont stugan__kitchen__bottom-part">
+  <div class="inner">
+    <div class="c-3">
+      <p>
+        Det moderna köket i Brusckvallen ligger i ett rymligt allrum med vacker
+        fjällutsikt. Köket är välutrustat och perfekt för både enklare och mer
+        avancerad matlagning. Den öppna planlösningen gör att matlagningen blir
+        en social upplevelse, där du kan njuta av både sällskap och den
+        storslagna naturen utanför.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="cont cont--spacing-bottom">
+  <div class="inner">
+    <div class="c-4">
+      <ImageGallery
+        images={[
+          {
+            src: "https://example.com/assets/images/stugan/stugan-2.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-3.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+        ]}
+      />
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "@/styles/vars.scss";
+
+  h1 {
+    margin-bottom: vars.spacing(1);
+  }
+
+  .stugan__kitchen__top-part {
+    margin-bottom: vars.spacing(4);
+  }
+
+  .stugan__kitchen__bottom-part {
+    margin-top: vars.spacing(4);
+    margin-bottom: vars.spacing(4);
+  }
+</style>

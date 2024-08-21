@@ -225,7 +225,7 @@ for (const calendar of calendars) {
     console.log(body);
 
     await new Promise((resolve) => setTimeout(resolve, 400));
-    Math.random() < 0.0 ? onSuccess() : onFail();
+    onSuccess();
 
     function onSuccess() {
       bookForm.innerHTML = `

@@ -1,0 +1,104 @@
+---
+import ImageGallery from "@/components/ui/ImageGallery.astro";
+---
+
+<div class="cont stugan__bedrooms__top-part">
+  <div class="inner">
+    <div class="c-3">
+      <h1>Sovrum</h1>
+      <p>
+        Brusckvallen erbjuder gott om utrymme för större sällskap med totalt 10
+        bekväma sängar. Perfekt för familjesammankomster, vänner på semester
+        eller grupper som vill njuta av fjällens lugn tillsammans. Stugan är
+        designad för att ge alla gäster en god natts sömn i en varm och
+        hemtrevlig atmosfär.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="cont">
+  <div class="inner">
+    <div class="c-4">
+      <ImageGallery
+        type="big-left"
+        images={[
+          {
+            src: "https://example.com/assets/images/stugan/stugan-1.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-2.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-3.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+        ]}
+      />
+    </div>
+  </div>
+</div>
+<div class="cont stugan__bedrooms__bottom-part">
+  <div class="inner">
+    <div class="c-3">
+      <p>
+        Brusckvallen har 10 bäddar fördelade på fyra mysiga sovrum. Här finns
+        gott om plats för alla, med varje rum inrett för att erbjuda en lugn och
+        skön sovmiljö. Perfekt för att alla gäster ska känna sig hemma och kunna
+        njuta av en god natts sömn.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="cont cont--spacing-bottom">
+  <div class="inner">
+    <div class="c-4">
+      <ImageGallery
+        images={[
+          {
+            src: "https://example.com/assets/images/stugan/stugan-2.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-3.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+        ]}
+      />
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "@/styles/vars.scss";
+
+  h1 {
+    margin-bottom: vars.spacing(1);
+  }
+
+  .stugan__bedrooms__top-part {
+    margin-bottom: vars.spacing(4);
+  }
+
+  .stugan__bedrooms__bottom-part {
+    margin-top: vars.spacing(4);
+    margin-bottom: vars.spacing(4);
+  }
+</style>

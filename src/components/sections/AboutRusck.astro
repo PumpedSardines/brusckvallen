@@ -1,62 +1,10 @@
 ---
-import Image from "@/components/ui/Image.astro";
-
+import ImageText from "@/components/ui/ImageText.astro";
 import SvanteKarinImage from "@/images/SvanteKarin.ts";
 ---
 
-<div class="cont cont--spacing">
-  <div class="inner">
-    <div class="c-2 c-4-tablet">
-      <div class="about-rusck__image-cont">
-        <Image image={SvanteKarinImage} />
-      </div>
-    </div>
-    <div class="c-2 c-4-tablet about_rusck__text-cont">
-      <h1 class="about_rusck__header">Familjen Rusck</h1>
-      <p class="about_rusck__description">
-        Brusckvallen ägs och drivs av familjen Rusck. Vi har skapat en plats där
-        våra gäster kan uppleva den unika skönheten i Brusckvallarna. Hos oss
-        får du inte bara en mysig stuga, utan också en personlig och minnesvärd
-        upplevelse. Välkommen till Brusckvallen, vårt smultronställe som vi
-        gärna delar med dig.
-      </p>
-    </div>
-  </div>
-</div>
-
-<style lang="scss">
-  @use "@/styles/vars";
-
-  .inner {
-    @include vars.break(tablet, down) {
-      display: flex;
-      flex-direction: column;
-      gap: vars.spacing(2);
-    }
-  }
-
-  .about-rusck__image-cont {
-    position: relative;
-    width: 100%;
-    height: 400px;
-
-    @include vars.break(phone, down) {
-      height: 250px;
-    }
-  }
-
-  .about_rusck__text-cont {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .about_rusck__header {
-    margin-bottom: vars.spacing(1);
-  }
-
-  .about_rusck__description {
-    margin-bottom: vars.spacing(1.5);
-  }
-</style>
+<ImageText
+  image={SvanteKarinImage}
+  title="Familjen Rusck"
+  content="Brusckvallen ägs och drivs av familjen Rusck. Vi har skapat en plats där våra gäster kan uppleva den unika skönheten i Brusckvallarna. Hos oss får du inte bara en mysig stuga, utan också en personlig och minnesvärd upplevelse. Välkommen till Brusckvallen, vårt smultronställe som vi gärna delar med dig."
+/>

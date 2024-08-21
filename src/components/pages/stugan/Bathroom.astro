@@ -1,0 +1,62 @@
+---
+import ImageGallery from "@/components/ui/ImageGallery.astro";
+---
+
+<div class="cont cont--spacing-top stugan__bathroom__top-part">
+  <div class="inner">
+    <div class="c-3">
+      <h1>Badrum</h1>
+      <p>
+        Brusckvallen erbjuder utmärkt komfort med två fullt utrustade badrum,
+        vilket gör det bekvämt för större sällskap. Stugan har också två
+        duschar, så att alla enkelt kan fräscha upp sig efter en dag i naturen.
+        Dessutom finns en härlig bastu där du kan koppla av och värma dig efter
+        en dag ute i kylan. Allt är utformat för att ge dig en avkopplande och
+        bekväm vistelse.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="cont cont--spacing-bottom">
+  <div class="inner">
+    <div class="c-4">
+      <ImageGallery
+        type="big-right"
+        images={[
+          {
+            src: "https://example.com/assets/images/stugan/stugan-1.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-2.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-3.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+          {
+            src: "https://example.com/assets/images/stugan/stugan-4.jpg",
+            alt: "Stugan",
+          },
+        ]}
+      />
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "@/styles/vars.scss";
+
+  h1 {
+    margin-bottom: vars.spacing(1);
+  }
+
+  .stugan__bathroom__top-part {
+    margin-bottom: vars.spacing(4);
+  }
+</style>

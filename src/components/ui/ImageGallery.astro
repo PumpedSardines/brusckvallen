@@ -49,8 +49,8 @@ if (typeof type !== "undefined" && type === "big-left") {
     grid-template-rows: repeat(2, 1fr);
 
     grid-template-areas:
-      "main main . ."
-      "main main . .";
+      ". . main main"
+      ". . main main";
 
     @include vars.break("tablet", "down") {
       grid-template-columns: repeat(2, 1fr);
@@ -73,8 +73,8 @@ if (typeof type !== "undefined" && type === "big-left") {
     grid-template-rows: repeat(2, 1fr);
 
     grid-template-areas:
-      ". . main main"
-      ". . main main";
+      "main main . ."
+      "main main . .";
 
     @include vars.break("tablet", "down") {
       grid-template-columns: repeat(2, 1fr);

@@ -6,7 +6,11 @@ import "@/styles/fonts.scss";
 import Nav from "@/components/ui/Nav.astro";
 import Footer from "@/components/ui/Footer.astro";
 
-import UpperText from "@/components/pages/stugan/UpperText.astro";
+import Kitchen from "@/components/pages/stugan/Kitchen.astro";
+import Bedrooms from "@/components/pages/stugan/Bedrooms.astro";
+import Bathroom from "@/components/pages/stugan/Bathroom.astro";
+import Storage from "@/components/pages/stugan/Storage.astro";
+import SmartHome from "@/components/pages/stugan/SmartHome.astro";
 
 import Hero from "@/components/sections/Hero.astro";
 import AskQuestion from "@/components/sections/AskQuestion.astro";
@@ -24,9 +28,20 @@ import Badrum from "@/images/Badrum";
   </head>
   <body class="no-fade-nav">
     <Nav />
-    <Hero image={Badrum} />
 
-    <UpperText />
+    <Hero
+      image={Badrum}
+      content={{
+        title: "Stugan",
+        description:
+          "Nisi do cillum magna nostrud in tempor aliqua excepteur Lorem voluptate est nostrud incididunt tempor sit nostrud id pariatur voluptate et ea minim commodo ex excepteur sit non consectetur non quis id minim ullamco ex tempor.",
+      }}
+    />
+    <Kitchen />
+    <Bathroom />
+    <Bedrooms />
+    <Storage />
+    <SmartHome />
 
     <AskQuestion />
     <AboutRusck />
