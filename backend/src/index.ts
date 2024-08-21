@@ -1,38 +1,40 @@
+import { PrismaClient } from "@prisma/client";
 import * as express from "express";
+import * as cookieParser from "cookie-parser";
 
-const app = express();
+import weeksGetHandler from "@/routes/weeks/get";
+import loginPostHandler from "@/routes/login/post";
+import authMiddleware from "./middleware/auth";
 
-app.get("/api/weeks", (_, res) => {
-  const weeksData = new Map<
-    `${number}:${number}`,
-    { price: number; booked: boolean }
-  >();
-  for (let i = 36; i < 52; i++) {
-    const prices = [11000, 14000, 17000, 20000];
+const prisma = new PrismaClient();
 
-    weeksData.set(`${i}:2024`, {
-      price: prices[~~(Math.random() * 4)]!,
-      booked: Math.random() < 0.5,
-    });
-  }
-  for (let i = 1; i < 10; i++) {
-    const random = ~~(Math.random() * 22 - 6);
-    if (random + 36 === 40) {
-      continue;
-    }
-    weeksData.delete(`${36 + random}:2024`);
-  }
+async function main() {
+  const app = express();
 
-  weeksData.delete("36:2024");
-  weeksData.delete("37:2024");
-  weeksData.delete("38:2024");
-  weeksData.delete("39:2024");
+  app.use(cookieParser());
+  app.use(express.json());
 
-  const data = Object.fromEntries(weeksData.entries());
+  app.use((_, res, next) => {
+    res.locals["prisma"] = prisma;
+    next();
+  });
+  app.use(authMiddleware);
 
-  res.send(data);
-});
+  app.get("/api/weeks", weeksGetHandler);
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
+  app.post("/api/login", loginPostHandler);
+
+  app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+  });
+}
+
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });

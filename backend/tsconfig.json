@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     // Strict Checks
     "alwaysStrict": true,
     "noImplicitAny": true,
