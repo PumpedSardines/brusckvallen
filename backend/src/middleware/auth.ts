@@ -7,7 +7,12 @@ async function authMiddleware(
   next: express.NextFunction,
 ) {
   const prisma = res.locals["prisma"] as PrismaClient;
-  const token = req.cookies["token"] as string;
+  const token = req.cookies["token"] as string | undefined;
+
+  if (token == null) {
+    next();
+    return;
+  }
 
   const user = await prisma.userSession.findUnique({
     where: {

@@ -15,9 +15,9 @@ datasource db {
 
 model User {
   id           Int           @id @default(autoincrement())
-  username     String @unique
+  username     String        @unique
   passwordHash String        @map("password_hash")
-  UserSession  UserSession[] 
+  UserSession  UserSession[]
 
   @@map("users")
 }
@@ -26,7 +26,7 @@ model UserSession {
   id        Int      @id @default(autoincrement())
   userId    Int      @map("user_id")
   user      User     @relation(fields: [userId], references: [id])
-  token     String @unique
+  token     String   @unique
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("user_sessions")
@@ -36,7 +36,8 @@ model Week {
   week Int
   year Int
 
-  price Int
+  hidden Boolean
+  price  Int
   booked Boolean
 
   @@id([week, year])

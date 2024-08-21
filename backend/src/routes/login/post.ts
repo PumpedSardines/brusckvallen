@@ -30,7 +30,7 @@ async function loginPostHandler(req: express.Request, res: express.Response) {
   const body = req.body;
 
   if (!validate(body)) {
-    return forge(400, { msg: "Bad Request" });
+    return forge.badRequest();
   }
 
   const user = await prisma.user.findUnique({
@@ -40,13 +40,13 @@ async function loginPostHandler(req: express.Request, res: express.Response) {
   });
 
   if (!user) {
-    return forge(401, { msg: "Username and password didn't match" });
+    return forge.unauthorized("Username and password didn't match");
   }
 
   const passwordMatch = await bcrypt.compare(body.password, user.passwordHash);
 
   if (!passwordMatch) {
-    return forge(401, { msg: "Username and password didn't match" });
+    return forge.unauthorized("Username and password didn't match");
   }
 
   const token = randId(256);
