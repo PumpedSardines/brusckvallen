@@ -1,0 +1,49 @@
+---
+import "@/styles/global.scss";
+import "@/styles/typography.scss";
+import "@/styles/fonts.scss";
+
+import Nav from "@/components/ui/Nav.astro";
+import Footer from "@/components/ui/Footer.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>404 - Brusckvallen</title>
+  </head>
+  <body>
+    <Nav />
+    <div class="main">
+      <div class="content">
+        <h1>500</h1>
+        <p>Oj, nu har nått gått väldigt snett</p>
+      </div>
+
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style lang="scss">
+  @use "@/styles/vars";
+
+  .main {
+    height: calc(100vh - 62px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: vars.spacing(1);
+  }
+</style>

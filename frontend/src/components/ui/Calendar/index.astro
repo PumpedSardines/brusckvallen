@@ -1,13 +1,17 @@
 ---
 import chevronRight from "@/icons/chevron-right.svg?raw";
 import chevronLeft from "@/icons/chevron-left.svg?raw";
+
+import { API_URL } from "@/config";
+
+const data = await fetch(`${API_URL}/weeks`).then(v => v.json())
 ---
 
 <script>
   import "./Calendar.ts";
 </script>
 
-<div class="calendar not-loaded">
+<div data-calendar-weeks={JSON.stringify(data)} class="calendar not-loaded">
   <div class="calendar__inner">
     <div class="calendar__week-selector">
       <div class="calendar__header">
@@ -25,7 +29,9 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
       <div class="calendar__header__line"></div>
 
       <div class="calendar__outer-days">
-        <div class="calendar__weeks"></div>
+        <div class="calendar__weeks">
+          {/* Populated by the script */}
+        </div>
       </div>
     </div>
     <div class="calendar__book-form">
@@ -193,6 +199,14 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
 
   .calendar__weeks {
     padding: vars.spacing(0, 0);
+    // min-height: 280px;
+  }
+
+  .calendar__weeks--no-weeks {
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .calendar__week-inner {
@@ -202,10 +216,15 @@ import chevronLeft from "@/icons/chevron-left.svg?raw";
     justify-content: space-between;
     cursor: pointer;
 
-    &:hover {
+    &:hover:not(.calendar__week-inner--booked) {
       border-radius: vars.spacing(1);
       background-color: var(--background-secondary-hover);
     }
+  }
+
+  .calendar__week-inner--booked {
+    color: var(--text-secondary);
+    cursor: unset;
   }
 
   .calendar__week-inner-chevron {

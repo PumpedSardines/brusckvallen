@@ -4,9 +4,7 @@ import dayjs from "dayjs";
 import { cx } from "@/scripts/cx";
 import { formatPrice } from "@/scripts/formatPrice";
 import { nextRenderFrame } from "@/scripts/nextRenderFrame";
-import type { BookingWindow } from "@/types";
-
-const thisWindow = window as BookingWindow;
+import { html } from "@/scripts/html";
 
 const calendars = document.querySelectorAll<HTMLDivElement>(".calendar");
 
@@ -15,12 +13,14 @@ type Week = {
   year: number;
   price: number;
   booked: boolean;
-  special: boolean;
   startDate: string;
   endDate: string;
 };
 
 for (const calendar of calendars) {
+  const weeksData = JSON.parse(calendar.getAttribute("data-calendar-weeks")!) as Record<`${number}:${number}`, { price: number, booked: boolean }>;
+
+
   const calendarInner =
     calendar.querySelector<HTMLDivElement>(".calendar__inner")!;
 
@@ -56,6 +56,17 @@ for (const calendar of calendars) {
   const formTextArea = bookForm.querySelector<HTMLInputElement>("textarea")!;
 
   let currentDate = dayjs().startOf("month");
+
+  for (let i = 0; i < 52; i++) {
+    const iDate = currentDate.add(i, "weeks").startOf("week");
+    const key = `${iDate.week()}:${iDate.year()}`;
+
+    if (key in weeksData) {
+      currentDate = iDate.startOf("month");
+      break
+    }
+  }
+
   let formOpen = false;
   let isSubmitting = false;
 
@@ -168,38 +179,59 @@ for (const calendar of calendars) {
 
     for (
       let i = 0;
-      currentDate.add(i, "week").isBefore(currentDate.add(1, "month"));
+      currentDate
+        .add(i, "week")
+        .startOf("week")
+        .isBefore(
+          currentDate.add(1, "month").add(1, "day")
+        );
       i++
     ) {
       const weekDate = currentDate
         .add(i, "week")
-        .startOf("week")
-        .subtract(1, "day");
+        .startOf("week");
+
+      const weekData = weeksData[`${weekDate.week()}:${weekDate.year()}`];
+
+      if (!weekData) {
+        continue;
+      }
+
       const week: Week = {
         number: weekDate.add(1, "day").week(),
         year: weekDate.year(),
-        booked: false,
-        special: i == 2,
-        price: 11000,
-        startDate: weekDate.format("dd D MMMM"),
-        endDate: weekDate.add(1, "week").format("dd D MMMM"),
+        booked: weekData.booked,
+        price: weekData.price,
+        startDate: weekDate.subtract(1, "day").format("dd D MMMM"),
+        endDate: weekDate.add(1, "week").add(1, "day").format("dd D MMMM"),
       };
 
       weeks.push(week);
     }
 
-    for (const week of weeks) {
-      const weekElement = document.createElement("button");
-      if (!week.booked) {
-        weekElement.addEventListener("click", () => {
-          setFormOpen(true);
-          weekInput.value = `Jag vill boka v${week.number} ${week.year}`;
-        });
+    weeksContainer.classList.remove("calendar__weeks--no-weeks");
+    if (weeks.length === 0) {
+      weeksContainer.classList.add("calendar__weeks--no-weeks");
+
+      const noWeeksElement = document.createElement("p");
+      noWeeksElement.textContent = "Inga veckor går att boka denna månad";
+      weeksContainer.appendChild(noWeeksElement);
+    } else {
+
+      for (const week of weeks) {
+        const weekElement = document.createElement("button");
+        if (!week.booked) {
+          weekElement.addEventListener("click", () => {
+            setFormOpen(true);
+            weekInput.value = `Jag vill boka v${week.number} ${week.year}`;
+          });
+        }
+        weekElement.classList.add("calendar__week");
+        weekElement.innerHTML = weekTemplate(week);
+        weeksContainer.appendChild(weekElement);
       }
-      weekElement.classList.add("calendar__week");
-      weekElement.innerHTML = weekTemplate(week);
-      weeksContainer.appendChild(weekElement);
     }
+
   }
 
   async function formSubmit() {
@@ -254,18 +286,19 @@ for (const calendar of calendars) {
 }
 
 function weekTemplate(week: Week) {
-  return `
+  return html(`
     <div class="${cx(
-      "calendar__week-inner",
-      week.special && "calendar__week-inner--special",
-    )}">
+    "calendar__week-inner",
+    week.booked && "calendar__week-inner--booked"
+  )}">
       <div class="calendar__week-inner-text">
-        <p class="larger">v${week.number} - ${formatPrice(week.price)}</p>
+        <p class="larger">v${week.number} - ${week.booked ? "Bokad" : formatPrice(week.price)}</p>
         <p>${week.startDate} - ${week.endDate}</p>
       </div>
       <div class="calendar__week-inner-chevron">
         ${chevronRight}
       </div>
     </div>
-  `;
+  `);
 }
+
