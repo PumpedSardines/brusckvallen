@@ -1,17 +1,19 @@
 ---
 import chevronRight from "@/icons/chevron-right.svg?raw";
 import chevronLeft from "@/icons/chevron-left.svg?raw";
+import api from "@/scripts/api";
 
-import { API_URL } from "@/config";
-
-const data = await fetch(`${API_URL}/weeks`).then(v => v.json())
+const data = await api().weeks.getAll();
 ---
 
 <script>
   import "./Calendar.ts";
 </script>
 
-<div data-calendar-weeks={JSON.stringify(data)} class="calendar not-loaded">
+<div
+  data-calendar-weeks={JSON.stringify(data.payload)}
+  class="calendar calendar--not-loaded"
+>
   <div class="calendar__inner">
     <div class="calendar__week-selector">
       <div class="calendar__header">
@@ -88,7 +90,7 @@ const data = await fetch(`${API_URL}/weeks`).then(v => v.json())
       transition: height 0.2s;
     }
 
-    &.not-loaded {
+    &.calendar--not-loaded {
       transition: none;
       opacity: 0;
     }
