@@ -20,11 +20,11 @@
   <div class="cont">
     <div class="inner">
       <div class="c-1">
-        <a class="logo" href="/">
+        <a class="nav__logo" href="/">
           <p>Brusckvallen</p>
         </a>
       </div>
-      <div class="c-3 links">
+      <div class="c-3 nav__links">
         <ul>
           <li>
             <a href="/"><p>Hem</p></a>
@@ -44,20 +44,13 @@
   </div>
 </nav>
 
-<div class="spacer"></div>
+<div class="nav__spacer"></div>
 
-<style lang="scss">
+<style is:global lang="scss">
   @use "@/styles/vars";
 
-  .spacer {
+  .nav__spacer {
     height: 62px;
-  }
-
-  :global(.no-fade-nav) {
-    nav.nav {
-      background-color: var(--background-primary) !important;
-      border-bottom: 1px solid var(--border-primary) !important;
-    }
   }
 
   nav.nav {
@@ -74,7 +67,7 @@
       background-color 0.3s,
       border-color 0.3s;
 
-    &:global(.at-top):not(:hover) {
+    &.at-top:not(:hover) {
       background-color: #f8f8f877;
       border-bottom: 1px solid transparent;
     }
@@ -82,22 +75,22 @@
     p {
       margin: 0;
     }
+  }
 
-    .logo {
-      text-decoration: none;
-      font-family: var(--font-family-heading);
-      font-size: 1.5rem;
-      color: var(--text-primary);
-    }
+  .nav__logo {
+    text-decoration: none;
+    font-family: var(--font-family-heading);
+    font-size: 1.5rem;
+    color: var(--text-primary);
+  }
 
-    .links {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+  .nav__links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 
-      @include vars.break(phone, down) {
-        display: none;
-      }
+    @include vars.break("phone", "down") {
+      display: none;
     }
 
     ul {

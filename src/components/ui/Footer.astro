@@ -34,7 +34,7 @@
   </div>
 </footer>
 
-<style lang="scss">
+<style is:global lang="scss">
   @use "@/styles/vars";
 
   .footer {
@@ -48,16 +48,6 @@
     margin-bottom: vars.spacing(4);
   }
 
-  @include vars.break(tablet, down) {
-    .footer {
-      padding-bottom: vars.spacing(4);
-    }
-
-    .footer__line {
-      margin-bottom: vars.spacing(2);
-    }
-  }
-
   .footer__texts {
     display: flex;
     justify-content: space-between;
@@ -68,7 +58,19 @@
     display: none;
   }
 
-  @include vars.break(tablet, down) {
+  .footer__copy-block {
+    display: none;
+  }
+
+  @include vars.break("tablet", "down") {
+    .footer {
+      padding-bottom: vars.spacing(4);
+    }
+
+    .footer__line {
+      margin-bottom: vars.spacing(2);
+    }
+
     .footer__sell-in-long {
       display: none;
     }
@@ -76,10 +78,6 @@
     .footer__sell-in-short {
       display: block;
     }
-  }
-
-  .footer__copy-block {
-    display: none;
   }
 
   @include vars.break(phone, down) {

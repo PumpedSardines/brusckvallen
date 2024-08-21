@@ -23,10 +23,10 @@ const src = srcsetValues?.at(-1)?.src ?? srcRaw;
     const img = element.querySelector("img")!;
 
     if (img.complete) {
-      element.classList.add("preloaded");
+      element.classList.add("image__preloaded");
     } else {
       img.addEventListener("load", () => {
-        element.classList.add("loaded");
+        element.classList.add("image__loaded");
       });
     }
   }
@@ -36,7 +36,7 @@ const src = srcsetValues?.at(-1)?.src ?? srcRaw;
   <img src={src} srcset={srcset} alt={alt} loading="lazy" />
 </div>
 
-<style lang="scss">
+<style is:global lang="scss">
   .image {
     width: 100%;
     height: 100%;
@@ -46,14 +46,14 @@ const src = srcsetValues?.at(-1)?.src ?? srcRaw;
     right: 0;
     background-color: var(--background-secondary);
 
-    &:global(.loaded) {
+    &.image__loaded {
       img {
         opacity: 1;
         transition: opacity 0.3s;
       }
     }
 
-    &:global(.preloaded) {
+    &.image__preloaded {
       img {
         opacity: 1;
       }

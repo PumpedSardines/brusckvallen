@@ -21,8 +21,11 @@ import Koket from "@/images/Koket";
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <title>Bokning & Frågor - Brusckvallen</title>
+    <script is:inline>
+      window.__BRUSCKVALLEN_WEEKS_BOOKED__ = JSON.parse("[]");
+    </script>
   </head>
-  <body class="no-fade-nav">
+  <body>
     <Nav />
     <Hero image={Koket} />
     <Form />

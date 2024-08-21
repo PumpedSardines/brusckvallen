@@ -87,15 +87,15 @@ import ImageGallery from "@/components/ui/ImageGallery.astro";
   </div>
 </div>
 
-<style lang="scss">
+<style is:global lang="scss">
   @use "@/styles/vars.scss";
-
-  h1 {
-    margin-bottom: vars.spacing(1);
-  }
 
   .stugan__kitchen__top-part {
     margin-bottom: vars.spacing(4);
+
+    h1 {
+      margin-bottom: vars.spacing(1);
+    }
   }
 
   .stugan__kitchen__bottom-part {

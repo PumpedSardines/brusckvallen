@@ -4,6 +4,9 @@ import dayjs from "dayjs";
 import { cx } from "@/scripts/cx";
 import { formatPrice } from "@/scripts/formatPrice";
 import { nextRenderFrame } from "@/scripts/nextRenderFrame";
+import type { BookingWindow } from "@/types";
+
+const thisWindow = window as BookingWindow;
 
 const calendars = document.querySelectorAll<HTMLDivElement>(".calendar");
 

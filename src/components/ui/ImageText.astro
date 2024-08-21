@@ -12,8 +12,8 @@ interface Props {
 const { image, title, content, reverse } = Astro.props;
 ---
 
-<div class:list={["cont cont--spacing", reverse && "reverse"]}>
-  <div class="inner">
+<div class:list={["cont cont--spacing", reverse && "image-text__reverse"]}>
+  <div class="inner image-text__cont-inner">
     <div class="c-2 c-4-tablet">
       <div class="image-text__image-cont">
         <Image image={image} />
@@ -26,10 +26,10 @@ const { image, title, content, reverse } = Astro.props;
   </div>
 </div>
 
-<style lang="scss">
+<style is:global lang="scss">
   @use "@/styles/vars";
 
-  .reverse {
+  .image-text__reverse {
     .image-text__text-cont {
       @include vars.break(tablet, up) {
         order: -1;
@@ -37,7 +37,7 @@ const { image, title, content, reverse } = Astro.props;
     }
   }
 
-  .inner {
+  .image-text__cont-inner {
     @include vars.break(tablet, down) {
       display: flex;
       flex-direction: column;
@@ -50,7 +50,7 @@ const { image, title, content, reverse } = Astro.props;
     width: 100%;
     height: 400px;
 
-    @include vars.break(phone, down) {
+    @include vars.break("phone", "down") {
       height: 250px;
     }
   }

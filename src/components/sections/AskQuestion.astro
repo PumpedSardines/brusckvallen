@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<style lang="scss">
+<style is:global lang="scss">
   @use "@/styles/vars";
 
   .ask-question__block {
@@ -39,7 +39,7 @@
     background-color: var(--background-secondary);
     background-color: var(--primary-light);
 
-    @include vars.break("phone", down) {
+    @include vars.break("phone", "down") {
       padding-top: vars.spacing(4);
       padding-bottom: vars.spacing(4);
     }
@@ -50,7 +50,7 @@
   }
 
   .ask-question__form {
-    @include vars.break("phone", down) {
+    @include vars.break("phone", "down") {
       margin-top: vars.spacing(2);
     }
 
