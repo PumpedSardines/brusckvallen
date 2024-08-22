@@ -17,7 +17,7 @@
         <input name="email" placeholder="johan.andersson@gmail.com" />
         <label for="text">Meddelande:</label>
         <textarea name="text"></textarea>
-        <button>Skicka meddelande</button>
+        <button class="button">Skicka meddelande</button>
       </form>
     </div>
   </div>
@@ -54,34 +54,8 @@
       margin-top: vars.spacing(2);
     }
 
-    label {
-      margin-bottom: vars.spacing(0.5);
-    }
-
     p {
       margin-bottom: vars.spacing(2);
-    }
-
-    input {
-      margin-bottom: vars.spacing(2);
-    }
-
-    button {
-      padding: vars.spacing(1.5, 3);
-      margin-top: vars.spacing(3);
-      cursor: pointer;
-      border: none;
-      background-color: #333;
-      background-color: var(--primary);
-      font-size: 1rem;
-      font-family: var(--font-family-heading);
-      font-weight: 700;
-      color: white;
-      width: 100%;
-    }
-
-    * {
-      display: block;
     }
   }
 </style>

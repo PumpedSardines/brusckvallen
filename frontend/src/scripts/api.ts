@@ -22,6 +22,17 @@ export namespace Api {
     price: number;
     booked: boolean;
   };
+
+  export type SanitizedUser = {
+    id: number;
+    username: string;
+    email: string | null;
+    notificationNewBooking: boolean;
+    notificationNewQuestion: boolean;
+    notificationQuestionSummary: boolean;
+  };
+
+  export type UpdateUser = Omit<SanitizedUser, "id" | "username">
 }
 
 async function req<T>(
@@ -56,8 +67,13 @@ function api() {
     logout: async () => {
       return await req("/logout", "POST");
     },
-    me: async () => {
-      return await req("/me", "GET");
+    me: {
+      get: async () => {
+        return await req<Api.SanitizedUser>("/me", "GET");
+      },
+      put: async (user: Api.UpdateUser) => {
+        return await req<Api.SanitizedUser>("/me", "PUT", user);
+      },
     },
     weeks: {
       getAll: async (allData: boolean = false) => {

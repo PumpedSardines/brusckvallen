@@ -1,0 +1,10 @@
+@use "@/styles/vars";
+
+.aside {
+  width: 100%;
+  border-radius: vars.spacing(0.5);
+  border: 1px solid var(--border-primary);
+  background-color: var(--background-secondary);
+  padding: vars.spacing(2);
+  box-sizing: border-box;
+}

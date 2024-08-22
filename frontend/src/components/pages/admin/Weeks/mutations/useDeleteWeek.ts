@@ -1,6 +1,7 @@
 import type { Api } from "@/scripts/api";
 import api from "@/scripts/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 function useDeleteWeek() {
   const queryClient = useQueryClient();
@@ -9,9 +10,9 @@ function useDeleteWeek() {
     mutationFn: async (data: { week: number, year: number }) => {
       const res = await api().weeks.delete(data.week, data.year);
       if (!res.ok) {
-        // toast.error(res.msg);
-        // console.error(res.msg);
-        // throw new Error(res.msg);
+        toast.error(res.msg);
+        console.error(res.msg);
+        throw new Error(res.msg);
       }
       return null;
     },

@@ -64,7 +64,7 @@ if (!res.ok) {
         <input required name="weeks" placeholder="Jag vill boka v24 och v25" />
         <label for="text">Meddelande & Frågor:</label>
         <textarea name="text"></textarea>
-        <button class="calendar__book-form__submit-button"
+        <button class="button calendar__book-form__submit-button"
           >Skicka bokningsförfrågan</button
         >
         <p class="calendar__book-form__description">
@@ -161,16 +161,7 @@ if (!res.ok) {
     }
 
     button {
-      padding: vars.spacing(1.5, 3);
-      cursor: pointer;
-      border: none;
-      background-color: #333;
-      background-color: var(--primary);
-      font-size: 1rem;
-      font-family: var(--font-family-heading);
-      font-weight: 700;
-      color: white;
-      width: 100%;
+      margin-top: unset;
     }
   }
 

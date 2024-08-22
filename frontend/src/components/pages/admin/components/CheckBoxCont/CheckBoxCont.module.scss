@@ -1,0 +1,17 @@
+@use "@/styles/vars";
+
+.checkboxCont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: vars.spacing(1);
+
+  label {
+    margin-bottom: 0;
+  }
+
+  input {
+    margin-bottom: 0;
+    width: vars.spacing(1.5);
+  }
+}

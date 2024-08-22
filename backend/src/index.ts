@@ -15,6 +15,7 @@ import meGetHandler from "./routes/me/get";
 
 import { DEV } from "@/config";
 import logoutPostHandler from "./routes/logout/post";
+import mePutHandler from "./routes/me/put";
 
 const prisma = new PrismaClient();
 
@@ -57,6 +58,7 @@ async function main() {
 
   app.get("/api/weeks", weeksGetHandler);
   app.get("/api/me", meGetHandler);
+  app.put("/api/me", mePutHandler);
   app.post("/api/logout", logoutPostHandler);
   app.put("/api/weeks", weeksPutHandler);
   app.delete("/api/weeks", weeksDeleteHandler);

@@ -118,6 +118,21 @@ $cont-spacing-phone: 8;
   }
 }
 
+form {
+  label {
+    display: block;
+    margin-bottom: vars.spacing(0.5);
+  }
+
+  input {
+    margin-bottom: vars.spacing(2);
+  }
+
+  button {
+    margin-top: vars.spacing(3);
+  }
+}
+
 input {
   display: block;
 
@@ -131,8 +146,19 @@ input {
   font-family: var(--font-family-read);
 }
 
-button {
-  border-radius: vars.spacing(0.5);
+button.button {
+  display: block;
+
+  padding: vars.spacing(1.5, 3);
+  cursor: pointer;
+  border: none;
+  background-color: #333;
+  background-color: var(--primary);
+  font-size: 1rem;
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  color: white;
+  width: 100%;
 }
 
 textarea {

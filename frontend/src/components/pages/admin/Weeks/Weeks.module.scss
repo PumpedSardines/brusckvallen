@@ -7,46 +7,6 @@
 
 }
 
-.aside {
-  width: 100%;
-  border-radius: vars.spacing(0.5);
-  border: 1px solid var(--border-primary);
-  background-color: var(--background-secondary);
-  padding: vars.spacing(2);
-  box-sizing: border-box;
-
-  button {
-    all: unset;
-
-    cursor: pointer;
-    margin-top: vars.spacing(3);
-    box-sizing: border-box;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--primary);
-    padding: vars.spacing(1);
-    width: 100%;
-  }
-}
-
-.checkboxCont {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: vars.spacing(1);
-
-  label {
-    margin-bottom: 0;
-  }
-
-  input {
-    margin-bottom: 0;
-    width: vars.spacing(1.5);
-  }
-}
-
 .week {
   padding: vars.spacing(2);
   border-radius: vars.spacing(0.5);
@@ -67,16 +27,9 @@
 
 
   button {
-    all: unset;
-
-    cursor: pointer;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--primary);
     padding: vars.spacing(0.5);
     border-radius: vars.spacing(0.5);
+    width: max-content;
   }
 }
 
@@ -84,14 +37,5 @@
 .week {
   :global(.larger) {
     margin-bottom: vars.spacing(2);
-  }
-
-  label {
-    display: block;
-    margin-bottom: vars.spacing(0.5);
-  }
-
-  input {
-    margin-bottom: vars.spacing(1);
   }
 }

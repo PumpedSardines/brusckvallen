@@ -1,6 +1,7 @@
 import type { Api } from "@/scripts/api";
 import api from "@/scripts/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 function usePutWeek() {
   const queryClient = useQueryClient();
@@ -9,9 +10,9 @@ function usePutWeek() {
     mutationFn: async (week: Api.Week) => {
       const res = await api().weeks.put(week);
       if (!res.ok) {
-        // toast.error(res.msg);
-        // console.error(res.msg);
-        // throw new Error(res.msg);
+        toast.error(res.msg);
+        console.error(res.msg);
+        throw new Error(res.msg);
       }
       return null;
     },

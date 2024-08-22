@@ -6,6 +6,9 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import api, { type Api } from "@/scripts/api";
 import usePutWeek from "./mutations/usePutWeek";
 import useDeleteWeek from "./mutations/useDeleteWeek";
+import CheckBoxCont from "@admin/components/CheckBoxCont";
+import AsideCont from "@admin/components/AsideCont";
+import { toast } from "react-toastify";
 
 function Weeks() {
   const queryClient = useQueryClient();
@@ -29,7 +32,7 @@ function Weeks() {
 
   useEffect(() => {
     if (isError) {
-      queryClient.invalidateQueries({ queryKey: ["is-logged-in"] });
+      queryClient.invalidateQueries({ queryKey: ["me"] });
     }
   }, [isError]);
 
@@ -51,8 +54,7 @@ function Weeks() {
 function Aside() {
   const putWeekMutation = usePutWeek();
 
-  return <div className={styles.aside}>
-    <p className="larger">Add week</p>
+  return <AsideCont>
     <form onSubmit={e => {
       e.preventDefault();
       const data = new FormData(e.target as HTMLFormElement);
@@ -71,7 +73,11 @@ function Aside() {
         hidden: hidden === "on",
       };
 
-      putWeekMutation.mutate(body);
+      putWeekMutation.mutate(body, {
+        onSuccess: () => {
+          toast.success("Added week");
+        },
+      });
     }}>
       <label htmlFor="week">Week</label>
       <input required type="number" name="week" placeholder="Week" />
@@ -79,17 +85,11 @@ function Aside() {
       <input required type="number" name="year" placeholder="Year" />
       <label htmlFor="price">Price</label>
       <input required type="number" name="price" placeholder="Price" />
-      <div className={styles.checkboxCont}>
-        <input type="checkbox" name="booked" />
-        <label htmlFor="booked">Booked</label>
-      </div>
-      <div className={styles.checkboxCont}>
-        <input type="checkbox" name="hidden" />
-        <label htmlFor="hidden">Hidden</label>
-      </div>
-      <button type="submit">Add</button>
+      <CheckBoxCont label="Booked" name="booked" />
+      <CheckBoxCont label="Hidden" name="hidden" />
+      <button className="button" type="submit">Add</button>
     </form>
-  </div>;
+  </AsideCont>;
 }
 
 type WeekProps = {
@@ -111,10 +111,14 @@ function Week(props: WeekProps) {
         <p className="larger">
           v{week.week} - {week.year}
         </p>
-        <button onClick={() => {
+        <button className="button" onClick={() => {
           deleteWeekMutation.mutate({
             week: week.week,
             year: week.year,
+          }, {
+            onSuccess: () => {
+              toast.success("Deleted week")
+            },
           });
         }}>Delete</button>
       </div>
@@ -136,8 +140,9 @@ function Week(props: WeekProps) {
             });
           }, 500);
         }} placeholder="Price" />
-        <div className={styles.checkboxCont}>
-          <input type="checkbox" defaultChecked={week.booked} onChange={e => {
+
+        <CheckBoxCont label="Booked" name="booked"
+          defaultChecked={week.booked} onChange={e => {
             putWeekMutation.mutate({
               week: week.week,
               year: week.year,
@@ -145,27 +150,19 @@ function Week(props: WeekProps) {
               booked: e.target.checked,
               hidden: week.hidden,
             });
-          }} name="booked" />
-          <label htmlFor="booked">Booked</label>
-        </div>
-        <div className={styles.checkboxCont}>
-          <input
-            defaultChecked={week.hidden}
-            onChange={e => {
-              putWeekMutation.mutate({
-                week: week.week,
-                year: week.year,
-                price: priceData.current,
-                booked: week.hidden,
-                hidden: e.target.checked,
-              });
-            }}
-            type="checkbox"
-            name="hidden"
-          />
-          <label htmlFor="hidden"
-          >Hidden</label>
-        </div>
+          }}
+        />
+        <CheckBoxCont label="Hidden" name="hidden"
+          defaultChecked={week.hidden} onChange={e => {
+            putWeekMutation.mutate({
+              week: week.week,
+              year: week.year,
+              price: priceData.current,
+              booked: week.booked,
+              hidden: e.target.checked,
+            });
+          }}
+        />
       </form>
     </div>
   );
