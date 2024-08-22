@@ -22,7 +22,7 @@ function Login() {
           if (res.ok) {
             window.location.reload();
           } else {
-            toast.error("Invalid username or password")
+            toast.error("Invalid username or password");
           }
         }}
       >
