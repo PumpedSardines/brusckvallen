@@ -28,7 +28,7 @@ function usePutMe() {
 
       try {
         const newUser = { ...previousUser, ...data };
-        queryClient.setQueryData(['me'], newUser);
+        queryClient.setQueryData(["me"], newUser);
         return { previousUser, newUser };
       } catch {
         return { previousUser, userUser: null };
@@ -41,7 +41,7 @@ function usePutMe() {
     },
     // Always refetch after error or success:
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['me'] });
+      queryClient.invalidateQueries({ queryKey: ["me"] });
     },
   });
 }

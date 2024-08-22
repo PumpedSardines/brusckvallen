@@ -27,8 +27,12 @@ function usePutWeek() {
       }
 
       try {
-        const newWeeks = JSON.parse(JSON.stringify(previousWeeks)) as Api.Week[];
-        const cWeek = newWeeks.find((w) => w.week === week.week && w.year === week.year);
+        const newWeeks = JSON.parse(
+          JSON.stringify(previousWeeks),
+        ) as Api.Week[];
+        const cWeek = newWeeks.find(
+          (w) => w.week === week.week && w.year === week.year,
+        );
         if (!cWeek) {
           newWeeks.push(week);
           newWeeks.sort((a, b) => {
@@ -48,7 +52,7 @@ function usePutWeek() {
           cWeek.hidden = week.hidden;
         }
 
-        queryClient.setQueryData(['weeks'], newWeeks);
+        queryClient.setQueryData(["weeks"], newWeeks);
 
         return { previousWeeks, newWeeks };
       } catch {
@@ -62,7 +66,7 @@ function usePutWeek() {
     },
     // Always refetch after error or success:
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['weeks'] });
+      queryClient.invalidateQueries({ queryKey: ["weeks"] });
     },
   });
 }

@@ -2,17 +2,17 @@ import { API_URL } from "@/config";
 
 export type Response<T = null> =
   | {
-    ok: true;
-    status: number;
-    msg: string;
-    payload: T;
-  }
+      ok: true;
+      status: number;
+      msg: string;
+      payload: T;
+    }
   | {
-    ok: false;
-    status: number;
-    msg: string;
-    payload: null;
-  };
+      ok: false;
+      status: number;
+      msg: string;
+      payload: null;
+    };
 
 export namespace Api {
   export type Week = {
@@ -32,7 +32,7 @@ export namespace Api {
     notificationQuestionSummary: boolean;
   };
 
-  export type UpdateUser = Omit<SanitizedUser, "id" | "username">
+  export type UpdateUser = Omit<SanitizedUser, "id" | "username">;
 }
 
 async function req<T>(

@@ -7,7 +7,7 @@ function useDeleteWeek() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: { week: number, year: number }) => {
+    mutationFn: async (data: { week: number; year: number }) => {
       const res = await api().weeks.delete(data.week, data.year);
       if (!res.ok) {
         toast.error(res.msg);
@@ -17,7 +17,7 @@ function useDeleteWeek() {
       return null;
     },
     // When mutate is called:
-    onMutate: async (data: { week: number, year: number }) => {
+    onMutate: async (data: { week: number; year: number }) => {
       await queryClient.cancelQueries({ queryKey: ["weeks"] });
 
       const previousWeeks = queryClient.getQueryData<Api.Week[]>(["weeks"]);
@@ -27,7 +27,9 @@ function useDeleteWeek() {
       }
 
       try {
-        const newWeeks = previousWeeks.filter((w) => w.week !== data.week || w.year !== data.year);
+        const newWeeks = previousWeeks.filter(
+          (w) => w.week !== data.week || w.year !== data.year,
+        );
 
         newWeeks.sort((a, b) => {
           if (a.year < b.year) {
@@ -39,7 +41,7 @@ function useDeleteWeek() {
           }
         });
 
-        queryClient.setQueryData(['weeks'], newWeeks);
+        queryClient.setQueryData(["weeks"], newWeeks);
 
         return { previousWeeks, newWeeks };
       } catch {
@@ -53,7 +55,7 @@ function useDeleteWeek() {
     },
     // Always refetch after error or success:
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['weeks'] });
+      queryClient.invalidateQueries({ queryKey: ["weeks"] });
     },
   });
 }

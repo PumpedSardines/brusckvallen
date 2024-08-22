@@ -14,9 +14,7 @@ function Layout(props: LayoutProps) {
       <div className={styles.inner}>
         <h1>{props.title}</h1>
         {props.aside && <aside className={styles.aside}>{props.aside}</aside>}
-        <div className={styles.main}>
-          {props.children}
-        </div>
+        <div className={styles.main}>{props.children}</div>
       </div>
     </div>
   );

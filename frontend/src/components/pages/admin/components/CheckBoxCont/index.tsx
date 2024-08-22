@@ -10,11 +10,17 @@ type CheckBoxContProps = {
 };
 
 function CheckBoxCont(props: CheckBoxContProps) {
-
-  return <div className={styles.checkboxCont}>
-    <input type="checkbox" name={props.name} defaultChecked={props.defaultChecked} onChange={props.onChange} />
-    <label htmlFor={props.name}>{props.label}</label>
-  </div>
+  return (
+    <div className={styles.checkboxCont}>
+      <input
+        type="checkbox"
+        name={props.name}
+        defaultChecked={props.defaultChecked}
+        onChange={props.onChange}
+      />
+      <label htmlFor={props.name}>{props.label}</label>
+    </div>
+  );
 }
 
 export default React.memo(CheckBoxCont);

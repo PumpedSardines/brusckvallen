@@ -54,42 +54,48 @@ function Weeks() {
 function Aside() {
   const putWeekMutation = usePutWeek();
 
-  return <AsideCont>
-    <form onSubmit={e => {
-      e.preventDefault();
-      const data = new FormData(e.target as HTMLFormElement);
+  return (
+    <AsideCont>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const data = new FormData(e.target as HTMLFormElement);
 
-      const week = data.get("week") as string;
-      const year = data.get("year") as string;
-      const price = data.get("price") as string;
-      const booked = data.get("booked") as string | null;
-      const hidden = data.get("hidden") as string | null;
+          const week = data.get("week") as string;
+          const year = data.get("year") as string;
+          const price = data.get("price") as string;
+          const booked = data.get("booked") as string | null;
+          const hidden = data.get("hidden") as string | null;
 
-      const body = {
-        week: parseInt(week),
-        year: parseInt(year),
-        price: parseInt(price),
-        booked: booked === "on",
-        hidden: hidden === "on",
-      };
+          const body = {
+            week: parseInt(week),
+            year: parseInt(year),
+            price: parseInt(price),
+            booked: booked === "on",
+            hidden: hidden === "on",
+          };
 
-      putWeekMutation.mutate(body, {
-        onSuccess: () => {
-          toast.success("Added week");
-        },
-      });
-    }}>
-      <label htmlFor="week">Week</label>
-      <input required type="number" name="week" placeholder="Week" />
-      <label htmlFor="year">Year</label>
-      <input required type="number" name="year" placeholder="Year" />
-      <label htmlFor="price">Price</label>
-      <input required type="number" name="price" placeholder="Price" />
-      <CheckBoxCont label="Booked" name="booked" />
-      <CheckBoxCont label="Hidden" name="hidden" />
-      <button className="button" type="submit">Add</button>
-    </form>
-  </AsideCont>;
+          putWeekMutation.mutate(body, {
+            onSuccess: () => {
+              toast.success("Added week");
+            },
+          });
+        }}
+      >
+        <label htmlFor="week">Week</label>
+        <input required type="number" name="week" placeholder="Week" />
+        <label htmlFor="year">Year</label>
+        <input required type="number" name="year" placeholder="Year" />
+        <label htmlFor="price">Price</label>
+        <input required type="number" name="price" placeholder="Price" />
+        <CheckBoxCont label="Booked" name="booked" />
+        <CheckBoxCont label="Hidden" name="hidden" />
+        <button className="button" type="submit">
+          Add
+        </button>
+      </form>
+    </AsideCont>
+  );
 }
 
 type WeekProps = {
@@ -111,38 +117,57 @@ function Week(props: WeekProps) {
         <p className="larger">
           v{week.week} - {week.year}
         </p>
-        <button className="button" onClick={() => {
-          deleteWeekMutation.mutate({
-            week: week.week,
-            year: week.year,
-          }, {
-            onSuccess: () => {
-              toast.success("Deleted week")
-            },
-          });
-        }}>Delete</button>
+        <button
+          className="button"
+          onClick={() => {
+            deleteWeekMutation.mutate(
+              {
+                week: week.week,
+                year: week.year,
+              },
+              {
+                onSuccess: () => {
+                  toast.success("Deleted week");
+                },
+              },
+            );
+          }}
+        >
+          Delete
+        </button>
       </div>
       <form>
         <label htmlFor="price">Price</label>
-        <input defaultValue={priceData.current} required type="number" name="price" onChange={e => {
-          const value = e.currentTarget.value;
+        <input
+          defaultValue={priceData.current}
+          required
+          type="number"
+          name="price"
+          onChange={(e) => {
+            const value = e.currentTarget.value;
 
-          setPriceTimeoutId.current && clearTimeout(setPriceTimeoutId.current);
-          priceData.current = parseInt(value);
+            setPriceTimeoutId.current &&
+              clearTimeout(setPriceTimeoutId.current);
+            priceData.current = parseInt(value);
 
-          setPriceTimeoutId.current = setTimeout(() => {
-            putWeekMutation.mutate({
-              week: week.week,
-              year: week.year,
-              price: priceData.current,
-              booked: week.booked,
-              hidden: week.hidden,
-            });
-          }, 500);
-        }} placeholder="Price" />
+            setPriceTimeoutId.current = setTimeout(() => {
+              putWeekMutation.mutate({
+                week: week.week,
+                year: week.year,
+                price: priceData.current,
+                booked: week.booked,
+                hidden: week.hidden,
+              });
+            }, 500);
+          }}
+          placeholder="Price"
+        />
 
-        <CheckBoxCont label="Booked" name="booked"
-          defaultChecked={week.booked} onChange={e => {
+        <CheckBoxCont
+          label="Booked"
+          name="booked"
+          defaultChecked={week.booked}
+          onChange={(e) => {
             putWeekMutation.mutate({
               week: week.week,
               year: week.year,
@@ -152,8 +177,11 @@ function Week(props: WeekProps) {
             });
           }}
         />
-        <CheckBoxCont label="Hidden" name="hidden"
-          defaultChecked={week.hidden} onChange={e => {
+        <CheckBoxCont
+          label="Hidden"
+          name="hidden"
+          defaultChecked={week.hidden}
+          onChange={(e) => {
             putWeekMutation.mutate({
               week: week.week,
               year: week.year,

@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./Login.module.scss";
 import api from "@/scripts/api";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 function Login() {
   const queryClient = useQueryClient();
@@ -19,14 +20,18 @@ function Login() {
 
           const res = await api().login(username, password);
           if (res.ok) {
-            queryClient.invalidateQueries({ queryKey: ["is-logged-in"] });
+            window.location.reload();
+          } else {
+            toast.error("Invalid username or password")
           }
         }}
       >
         <h1>Login</h1>
         <input type="text" name="username" placeholder="Username" />
         <input type="password" name="password" placeholder="Password" />
-        <button className="button" type="submit">Login</button>
+        <button className="button" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );
