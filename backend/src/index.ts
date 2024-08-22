@@ -11,6 +11,10 @@ import weeksPutHandler from "@/routes/weeks/put";
 import weeksDeleteHandler from "@/routes/weeks/delete";
 
 import loginPostHandler from "@/routes/login/post";
+import meGetHandler from "./routes/me/get";
+
+import { DEV } from "@/config";
+import logoutPostHandler from "./routes/logout/post";
 
 const prisma = new PrismaClient();
 
@@ -19,10 +23,23 @@ async function main() {
 
   app.use(cookieParser());
   app.use(express.json());
+  app.use((_, res, next) => {
+    if (DEV) {
+      res.setHeader("Access-Control-Allow-Origin", "http://localhost:4321");
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type, Cookie");
+      res.setHeader("Access-Control-Allow-Credentials", true as any);
+    }
+    next();
+  });
 
   app.use((_, res, next) => {
     res.locals["prisma"] = prisma;
     next();
+  });
+
+  app.options("*", (_, res) => {
+    res.sendStatus(200);
   });
 
   app.use((_, res, next) => {
@@ -34,11 +51,13 @@ async function main() {
     }
   });
 
-  app.get("/api/weeks", weeksGetHandler);
   app.post("/api/login", loginPostHandler);
 
   app.use(authMiddleware);
 
+  app.get("/api/weeks", weeksGetHandler);
+  app.get("/api/me", meGetHandler);
+  app.post("/api/logout", logoutPostHandler);
   app.put("/api/weeks", weeksPutHandler);
   app.delete("/api/weeks", weeksDeleteHandler);
 
@@ -50,6 +69,12 @@ async function main() {
 
   app.listen(3000, () => {
     console.log("Server is running on port 3000");
+  });
+
+  await new Promise((_, reject) => {
+    process.on("exit", () => {
+      reject(new Error("SIGTERM"));
+    });
   });
 }
 

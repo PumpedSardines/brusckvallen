@@ -52,6 +52,7 @@ async function weeksPutHandler(req: express.Request, res: express.Response) {
     update: {
       price: body.price,
       booked: body.booked,
+      hidden: body.hidden,
     },
     create: {
       hidden: body.hidden,

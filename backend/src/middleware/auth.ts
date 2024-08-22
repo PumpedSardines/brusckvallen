@@ -25,6 +25,7 @@ async function authMiddleware(
 
   if (user != null) {
     res.locals["user"] = user.user;
+    res.locals["token"] = token;
   }
 
   next();

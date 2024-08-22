@@ -60,8 +60,8 @@ async function loginPostHandler(req: express.Request, res: express.Response) {
 
   res.cookie("token", token, {
     maxAge: 1000 * 60 * 60 * 24 * 365 * 5, // 1 year
-    httpOnly: true,
     secure: true,
+    httpOnly: true,
   });
   return forge.ok();
 }

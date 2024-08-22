@@ -78,6 +78,8 @@ type Week = {
       }
     }
 
+    const startDate = currentDate.clone();
+
     let formOpen = false;
     let isSubmitting = false;
 
@@ -111,7 +113,7 @@ type Week = {
     }
 
     function backToToday() {
-      currentDate = dayjs().startOf("month");
+      currentDate = startDate.clone();
       render();
     }
 
@@ -197,8 +199,7 @@ type Week = {
         i++
       ) {
         const weekDate = currentDate.add(i, "week").startOf("week");
-
-        const weekData = weeksData[`${weekDate.week()}:${weekDate.year()}`];
+        const weekData = weeksData[`${weekDate.week()}:${getYear(weekDate)}`];
 
         if (!weekData) {
           continue;
@@ -206,7 +207,7 @@ type Week = {
 
         const week: Week = {
           number: weekDate.add(1, "day").week(),
-          year: weekDate.year(),
+          year: getYear(weekDate),
           booked: weekData.booked,
           price: weekData.price,
           startDate: weekDate.subtract(1, "day").format("dd D MMMM"),
@@ -308,5 +309,19 @@ type Week = {
       </div>
     </div>
   `);
+  }
+
+  function getYear(date: dayjs) {
+    const years = [date.year(), date.endOf("week").year()];
+
+    if (years[0] !== years[1]) {
+      if (date.week() === 1) {
+        return years[1];
+      } else {
+        return years[0];
+      }
+    } else {
+      return years[0];
+    }
   }
 })();
