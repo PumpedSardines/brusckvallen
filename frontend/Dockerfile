@@ -38,6 +38,8 @@ COPY ./docker/start.sh start.sh
 RUN chmod +x start.sh
 COPY ./docker/build.sh build.sh
 RUN chmod +x build.sh
+COPY ./docker/build-loop.sh build-loop.sh
+RUN chmod +x build-loop.sh
 
 RUN echo "healthy" >> /tmp/healthy
 

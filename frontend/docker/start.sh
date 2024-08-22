@@ -12,7 +12,7 @@ terminate() {
 trap terminate EXIT
 
 # Start the subprocesses in the background
-./build.sh &
+./build-loop.sh &
 nginx &
 
 # Wait forever (or until a signal is caught)
