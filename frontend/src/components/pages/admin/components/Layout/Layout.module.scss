@@ -16,6 +16,9 @@
   margin: 0 auto;
   display: flex;
 
+  >h1 {
+    display: none;
+  }
 }
 
 .main {
@@ -29,4 +32,27 @@
 .aside {
   padding-top: calc(#{vars.spacing(2)} + 48.5px);
   flex: 1;
+}
+
+@include vars.break('tablet', "down") {
+  .inner {
+    flex-direction: column;
+
+    >h1 {
+      display: block;
+    }
+  }
+
+  .main {
+    flex: unset;
+
+    >h1 {
+      display: none;
+    }
+  }
+
+  .aside {
+    padding-top: 0;
+    flex: unset;
+  }
 }
