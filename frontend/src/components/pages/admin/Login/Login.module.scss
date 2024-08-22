@@ -1,0 +1,45 @@
+@use "@/styles/vars";
+
+.root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--background-secondary)
+}
+
+.form {
+  display: block;
+  max-width: 450px;
+  width: 100%;
+  background-color: var(--background-primary);
+  padding: vars.spacing(6, 4);
+  padding-top: vars.spacing(5);
+  border-radius: 8px;
+
+  h1 {
+    margin-bottom: vars.spacing(2);
+  }
+
+  input {
+    margin-bottom: vars.spacing(2);
+  }
+
+  button {
+    display: block;
+
+    margin-top: vars.spacing(3);
+    padding: vars.spacing(1.5, 3);
+    cursor: pointer;
+    border: none;
+    background-color: #333;
+    background-color: var(--primary);
+    font-size: 1rem;
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    color: white;
+    width: 100%;
+  }
+}

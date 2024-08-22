@@ -119,6 +119,8 @@ $cont-spacing-phone: 8;
 }
 
 input {
+  display: block;
+
   width: 100%;
   border-radius: vars.spacing(0.5);
   padding: vars.spacing(1, 2);

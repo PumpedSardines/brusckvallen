@@ -18,6 +18,7 @@ export namespace Api {
   export type Week = {
     week: number;
     year: number;
+    hidden: boolean;
     price: number;
     booked: boolean;
   };
@@ -52,6 +53,9 @@ function api() {
     weeks: {
       getAll: async () => {
         return await req<Api.Week[]>("/weeks", "GET");
+      },
+      put: async (week: Api.Week) => {
+        return await req<Api.Week>(`/weeks`, "PUT", week);
       },
     },
   };

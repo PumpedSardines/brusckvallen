@@ -4,8 +4,11 @@
     "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
+      "@admin/*": ["./src/components/pages/admin/*"],
       "@/*": ["./src/*"]
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   },
   "include": ["./src/**/*"],
   "exclude": ["./dist"]

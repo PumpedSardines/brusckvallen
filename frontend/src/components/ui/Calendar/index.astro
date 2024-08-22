@@ -3,7 +3,11 @@ import chevronRight from "@/icons/chevron-right.svg?raw";
 import chevronLeft from "@/icons/chevron-left.svg?raw";
 import api from "@/scripts/api";
 
-const data = await api().weeks.getAll();
+const res = await api().weeks.getAll();
+
+if (!res.ok) {
+  throw new Error("Failed to fetch weeks");
+}
 ---
 
 <script>
@@ -11,7 +15,7 @@ const data = await api().weeks.getAll();
 </script>
 
 <div
-  data-calendar-weeks={JSON.stringify(data.payload)}
+  data-calendar-weeks={JSON.stringify(res.payload)}
   class="calendar calendar--not-loaded"
 >
   <div class="calendar__inner">
