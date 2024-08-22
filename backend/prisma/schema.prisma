@@ -14,12 +14,29 @@ datasource db {
 }
 
 model User {
-  id           Int           @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
   username     String        @unique
+  email        String?
   passwordHash String        @map("password_hash")
   UserSession  UserSession[]
+  
+  notificationNewBooking      Boolean @default(false) @map("notification_new_booking")
+  notificationNewQuestion     Boolean @default(false) @map("notification_new_question")
+  notificationQuestionSummary Boolean @default(false) @map("notification_question_summary")
 
   @@map("users")
+}
+
+model Question {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  name     String
+  email    String
+  question String
+
+  @@map("questions")
 }
 
 model UserSession {
